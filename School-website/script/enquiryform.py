@@ -10,22 +10,22 @@ from google.oauth2.service_account import Credentials
 SERVICE_ACCOUNT_FILE = "keys/school-enquiry-form-d1a4bfaaf6a0.json"
 SPREADSHEET_ID = "1rIufJA-mpS71VvHKyNzTJQ8BEbCgUoihv46mO4WyF4Q"
 
-CHECK_INTERVAL = 10  # seconds
+CHECK_INTERVAL = 30  # seconds
 
-API_URL = "https://dev.newtonianlearningsolutions.com/member/admin/add-new-enquiry-form/"
-INST_ID = 36
+API_URL = "https://newtonianlearningsolutions.com/member/admin/add-new-enquiry-form/"
+INST_ID = 13
 
 # =========================================================
 # CLASS → COURSE ID MAP
 # =========================================================
 CLASS_COURSE_MAP = {
-    "M1": 244,
-    "M2": 187,
-    "1 Standard": 167,
-    "2 Standard": 166,
-    "3 Standard": 181,
-    "4 Standard": 182,
-    "5 Standard": 191,
+    "M1": 154,
+    "M2": 155,
+    "1 Standard": 156,
+    "2 Standard": 157,
+    "3 Standard": 158,
+    "4 Standard": 160,
+    "5 Standard": 161,
     "6 Standard": 162,
     "7 Standard": 163,
     "8 Standard": 164,
