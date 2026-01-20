@@ -111,6 +111,15 @@ async function loadArticle() {
             articleBody.appendChild(p);
         });
 
+        // Update YouTube video link
+        const videoSection = document.getElementById('videoSection');
+        const youtubeLink = document.getElementById('youtubeLink');
+        if (article.youtube) {
+            youtubeLink.href = article.youtube;
+        } else {
+            videoSection.style.display = 'none';
+        }
+
         // Load related articles
         loadRelatedArticles(data.articles, article.category, articleId);
 
@@ -250,28 +259,4 @@ document.addEventListener('DOMContentLoaded', () => {
         customizerClose.addEventListener('click', function() {
             customizerPanel.classList.remove('active');
         });
-const messages = [
-    "Education shapes character, builds confidence, and opens doors to limitless opportunities.",
-    "Learning today empowers students to lead tomorrow with responsibility and integrity.",
-    "Knowledge, discipline, and values are the foundation of true success.",
-    "Great schools don’t just teach subjects, they nurture future leaders."
-];
-
-const textElement = document.getElementById("motivationText");
-let index = 0;
-
-function changeText() {
-    textElement.style.opacity = 0;
-
-    setTimeout(() => {
-        textElement.textContent = messages[index];
-        textElement.style.opacity = 1;
-        index = (index + 1) % messages.length;
-    }, 500);
-}
-
-// first text
-changeText();
-
-// change every 8 seconds
-setInterval(changeText, 8000);
+        

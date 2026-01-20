@@ -6,10 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 300); // wait for layout to settle
     }
 });
-
 document.addEventListener("DOMContentLoaded", function () {
+
     const navbar = document.getElementById('navbarContent');
-    const navbarNav = document.querySelector('.navbar');
     const toggler = document.querySelector('.navbar-toggler');
 
     // Close menu when clicking any nav link
@@ -28,122 +27,23 @@ document.addEventListener("DOMContentLoaded", function () {
         bootstrap.Collapse.getOrCreateInstance(navbar);
     });
 
-    // Close when clicking outside the navbar + toggle (for both desktop and mobile)
+    // Close when clicking outside the navbar + toggle
     document.addEventListener('click', function (e) {
-        // Check if navbar is currently open/shown
-        if (!navbar.classList.contains('show')) {
-            return;
-        }
-
         const isClickInsideNavbar = navbar.contains(e.target);
         const isClickOnToggler = toggler.contains(e.target);
-        const isClickInsideNavbarNav = navbarNav.contains(e.target);
 
-        // Close if click is outside navbar, toggler, and the navbar container
-        if (!isClickInsideNavbar && !isClickOnToggler && !isClickInsideNavbarNav) {
+        if (!isClickInsideNavbar && !isClickOnToggler) {
             const bsCollapse = bootstrap.Collapse.getInstance(navbar);
-            if (bsCollapse) {
+            if (bsCollapse && navbar.classList.contains('show')) {
                 bsCollapse.hide();
             }
         }
     });
 
-    // Close navbar on touch outside on mobile devices
-    document.addEventListener('touchstart', function (e) {
-        // Check if navbar is currently open/shown
-        if (!navbar.classList.contains('show')) {
-            return;
-        }
-
-        const isClickInsideNavbar = navbar.contains(e.target);
-        const isClickOnToggler = toggler.contains(e.target);
-        const isClickInsideNavbarNav = navbarNav.contains(e.target);
-
-        // Close if touch is outside navbar, toggler, and the navbar container
-        if (!isClickInsideNavbar && !isClickOnToggler && !isClickInsideNavbarNav) {
-            const bsCollapse = bootstrap.Collapse.getInstance(navbar);
-            if (bsCollapse) {
-                bsCollapse.hide();
-            }
-        }
-    }, true);
-
-    // ===== NAVIGATION SCROLL HIGHLIGHTING SYSTEM =====
-    function setActiveNavLink(id) {
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.classList.remove('active');
-        });
-        
-        if (id) {
-            const activeLink = document.querySelector(`.nav-link[href="${id}"]`);
-            if (activeLink) {
-                activeLink.classList.add('active');
-            }
-        }
-    }
-    
-    function updateActiveNavLink() {
-        const sections = document.querySelectorAll('section[id]');
-        if (sections.length === 0) return;
-        
-        const navHeight = navbarNav.offsetHeight + 10;
-        const scrollPos = window.scrollY;
-        
-        let activeSection = null;
-        
-        // Find which section is currently in view
-        for (let section of sections) {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            const sectionBottom = sectionTop + sectionHeight;
-            
-            // Check if scroll position is within this section
-            if (scrollPos + navHeight >= sectionTop && scrollPos + navHeight < sectionBottom) {
-                activeSection = section.getAttribute('id');
-                break;
-            }
-        }
-        
-        // If no section found, check which is closest below viewport
-        if (!activeSection) {
-            for (let section of sections) {
-                const sectionTop = section.offsetTop;
-                if (sectionTop > scrollPos + navHeight) {
-                    activeSection = section.getAttribute('id');
-                    break;
-                }
-            }
-        }
-        
-        // Fallback to first section
-        if (!activeSection && sections.length > 0) {
-            activeSection = sections[0].getAttribute('id');
-        }
-        
-        if (activeSection) {
-            setActiveNavLink('#' + activeSection);
-        }
-    }
-    
-    // Throttled scroll event
-    let scrollTimeout = null;
-    window.addEventListener('scroll', function() {
-        if (scrollTimeout !== null) {
-            clearTimeout(scrollTimeout);
-        }
-        scrollTimeout = setTimeout(function() {
-            updateActiveNavLink();
-        }, 50);
-    }, { passive: true });
-    
-    // Initial call on page load
-    setTimeout(() => {
-        updateActiveNavLink();
-    }, 100);
 });
 
-// Theme switching functionality
-document.addEventListener('DOMContentLoaded', function() {
+    // Theme switching functionality
+    document.addEventListener('DOMContentLoaded', function() {
         // Theme selectors
         const themeBtns = document.querySelectorAll('.theme-btn');
         themeBtns.forEach(btn => {
@@ -233,9 +133,48 @@ document.addEventListener('DOMContentLoaded', function() {
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
+                    
+                    // Update active nav link on click
+                    setActiveNavLink(targetId);
                 }
             });
         });
+        
+        // Active nav link on scroll
+        function setActiveNavLink(id) {
+            // Remove active class from all nav links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            // Add active class to the corresponding nav link
+            const activeLink = document.querySelector(`.nav-link[href="${id}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+        
+        function updateActiveNavLinkOnScroll() {
+            const sections = document.querySelectorAll('section[id]');
+            const navHeight = 80; // navbar height offset
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= (sectionTop - navHeight - 50)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            if (current) {
+                setActiveNavLink('#' + current);
+            }
+        }
+        
+        // Update active nav link on scroll
+        window.addEventListener('scroll', updateActiveNavLinkOnScroll);
+        // Also call once on page load
+        updateActiveNavLinkOnScroll();
         
         // Mobile menu toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
@@ -449,23 +388,23 @@ document.addEventListener('DOMContentLoaded', function() {
 // Hero Carousel Data - Headlines synchronized with images
 const heroSlides = [
 {
-     title: "Empowering Young Minds for the Future",
-    description: "Our school fosters academic excellence, creativity, and strong values in a nurturing environment that supports every child’s journey toward success.",
+    title: "Inspiring Young Minds Every Day",
+    description: "Students grow best in an environment that encourages curiosity, creativity, and confidence. Our school nurtures each child with purposeful learning and supportive guidance.",
     image: "https://d6pldk4490zsr.cloudfront.net/wp-content/uploads/2019/06/5.jpg"
 },
 {
-       title: "A Place Where Every Child Thrives",
-    description: "We provide a safe and supportive learning atmosphere where students are encouraged to explore, ask questions, and grow with confidence.",
+    title: "Where Learning Feels Like Discovery",
+    description: "Education here goes beyond textbooks. Students explore ideas, develop new skills, and build a strong foundation for a bright future..",
     image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
 },
 {
-    title: "Building Character Alongside Knowledge",
-    description: "Beyond academics, we focus on discipline, moral values, and leadership skills to shape responsible and compassionate individuals.",
+    title: "Shaping Futures with Care",
+    description: "Every child deserves encouragement and opportunity. We create a safe, positive space where students learn, express themselves, and grow confidently.",
     image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
 },
 {
-     title: "Learning Beyond the Classroom",
-    description: "Through sports, arts, cultural activities, and experiential learning, we ensure the holistic development of every student.",
+    title: "World-Class Building Character Through Education Programs",
+    description:"Our focus is not only on academic success but also on values, discipline, and personal growth — preparing students for life beyond the classroom.",
     image: "https://images.unsplash.com/photo-1524178234883-043d5c3f3cf4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
 }
 ];
