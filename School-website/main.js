@@ -15,6 +15,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Close menu when clicking any nav link
     document.querySelectorAll('#navbarContent .nav-link').forEach(link => {
         link.addEventListener('click', function () {
+            if (link.classList.contains('dropdown-toggle')) {
+                return;
+            }
             const bsCollapse = bootstrap.Collapse.getInstance(navbar);
             if (bsCollapse) bsCollapse.hide();
         });
@@ -170,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         // Initialize active theme and background buttons
-        const savedTheme = localStorage.getItem('theme') || 'blue';
+        const savedTheme = localStorage.getItem('theme') || 'purple';
         const savedBg = localStorage.getItem('bg') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
         document.documentElement.setAttribute('data-bg', savedBg);
@@ -607,7 +610,7 @@ heroCarousel.addEventListener('slide.bs.carousel', function(event) {
 
         // Initialize theme if exists (from index.html)
         function initTheme() {
-            const savedTheme = localStorage.getItem('theme') || 'blue';
+            const savedTheme = localStorage.getItem('theme') || 'purple';
             const savedBg = localStorage.getItem('bg') || 'light';
             document.documentElement.setAttribute('data-theme', savedTheme);
             document.documentElement.setAttribute('data-bg', savedBg);
@@ -663,40 +666,24 @@ setInterval(changeText, 8000);
 // ===== GALLERY SECTION =====
 // All gallery images organized in sets of 6
 const allGalleryPhotos = [
-    { src: 'Images/g1.jpeg', alt: 'Gallery Image 1' },
-    { src: 'Images/g2.jpeg', alt: 'Gallery Image 14' },
-    { src: 'Images/g3.jpeg', alt: 'Gallery Image 13' },
-    { src: 'Images/g4.jpeg', alt: 'Gallery Image 4' },
-    { src: 'Images/g5.jpeg', alt: 'Gallery Image 5' },
-    { src: 'Images/g6.jpeg', alt: 'Gallery Image 6' },
-    { src: 'Images/g7.jpeg', alt: 'Gallery Image 7' },
-    { src: 'Images/g8.jpeg', alt: 'Gallery Image 8' },
-    { src: 'Images/g9.jpeg', alt: 'Gallery Image 9' },
-    { src: 'Images/g10.jpeg', alt: 'Gallery Image 10' },
-    { src: 'Images/g11.jpeg', alt: 'Gallery Image 11' },
-    { src: 'Images/g12.jpeg', alt: 'Gallery Image 12' },
-    { src: 'Images/g13.jpeg', alt: 'Gallery Image 3' },
-    { src: 'Images/g14.jpeg', alt: 'Gallery Image 2' },
-    { src: 'Images/n1.jpeg', alt: 'School Activities 6' },
-    { src: 'Images/n2.jpeg', alt: 'School Activities 7' },
-    { src: 'Images/n3.jpeg', alt: 'School Activities 8' },
-    { src: 'Images/n4.jpeg', alt: 'School Activities 9' },
-    { src: 'Images/sports.jpeg', alt: 'Sports Activities' },
-    { src: 'Images/yoga.jpeg', alt: 'Yoga Session' },
-    { src: 'Images/independence.jpeg', alt: 'Independence Day' },
-    { src: 'Images/annual.jpeg', alt: 'Annual Events' },
-    { src: 'Images/H1.jpeg', alt: 'School Events' },
-    { src: 'Images/k2.jpeg', alt: 'Karate Training' },
-    { src: 'Images/a22.jpeg', alt: 'School Activities' },
-    { src: 'Images/envi.jpeg', alt: 'Environmental Activities' },
-    { src: 'Images/event2.jpeg', alt: 'Event Celebrations' },
-    { src: 'Images/eve3.jpg', alt: 'Evening Events' },
-    { src: 'Images/karate.jpeg', alt: 'Karate Training 2' },
-    { src: 'Images/d1.jpeg', alt: 'School Activities 1' },
-    { src: 'Images/d2.jpeg', alt: 'School Activities 2' },
-    { src: 'Images/d3.jpeg', alt: 'School Activities 3' },
-    { src: 'Images/d5.jpeg', alt: 'School Activities 5' },
-    { src: 'Images/n5.jpeg', alt: 'School Activities 10' }
+    { src: 'Images/dress.jpeg', alt: 'dress' },
+    { src: 'Images/e1.jpeg', alt: 'e1' },
+    { src: 'Images/e2.jpeg', alt: 'e2' },
+    { src: 'Images/inde.jpeg', alt: 'inde' },
+    { src: 'Images/inde2.jpeg', alt: 'inde2' },
+    { src: 'Images/indraevent.png', alt: 'indraevent' },
+    { src: 'Images/k1.jpeg', alt: 'k1' },
+    { src: 'Images/indra1.png', alt: 'indra1' },
+    { src: 'Images/sbp1.png', alt: 'sbp1' },
+    { src: 'Images/sbp2.png', alt: 'sbp2' },
+    { src: 'Images/sbp3.png', alt: 'sbp3' },
+    { src: 'Images/trust1.png', alt: 'trust1' },
+    { src: 'Images/trust2.png', alt: 'trust2' },
+    { src: 'Images/main.png', alt: 'main' },
+    { src: 'Images/yoga.jpeg', alt: 'yoga' },
+    { src: 'Images/yoga1.jpeg', alt: 'yoga1' },
+    { src: 'Images/yoga2.jpeg', alt: 'yoga2' },
+    { src: 'Images/yoga3.jpeg', alt: 'yoga3' }
 ];
 
 const PHOTOS_PER_PAGE = 6;
