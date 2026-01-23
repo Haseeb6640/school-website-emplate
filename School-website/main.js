@@ -6,9 +6,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 300); // wait for layout to settle
     }
 });
-document.addEventListener("DOMContentLoaded", function () {
 
+document.addEventListener("DOMContentLoaded", function () {
     const navbar = document.getElementById('navbarContent');
+    const navbarNav = document.querySelector('.navbar');
     const toggler = document.querySelector('.navbar-toggler');
 
     // Close menu when clicking any nav link
@@ -24,23 +25,122 @@ document.addEventListener("DOMContentLoaded", function () {
         bootstrap.Collapse.getOrCreateInstance(navbar);
     });
 
-    // Close when clicking outside the navbar + toggle
+    // Close when clicking outside the navbar + toggle (for both desktop and mobile)
     document.addEventListener('click', function (e) {
+        // Check if navbar is currently open/shown
+        if (!navbar.classList.contains('show')) {
+            return;
+        }
+
         const isClickInsideNavbar = navbar.contains(e.target);
         const isClickOnToggler = toggler.contains(e.target);
+        const isClickInsideNavbarNav = navbarNav.contains(e.target);
 
-        if (!isClickInsideNavbar && !isClickOnToggler) {
+        // Close if click is outside navbar, toggler, and the navbar container
+        if (!isClickInsideNavbar && !isClickOnToggler && !isClickInsideNavbarNav) {
             const bsCollapse = bootstrap.Collapse.getInstance(navbar);
-            if (bsCollapse && navbar.classList.contains('show')) {
+            if (bsCollapse) {
                 bsCollapse.hide();
             }
         }
     });
 
+    // Close navbar on touch outside on mobile devices
+    document.addEventListener('touchstart', function (e) {
+        // Check if navbar is currently open/shown
+        if (!navbar.classList.contains('show')) {
+            return;
+        }
+
+        const isClickInsideNavbar = navbar.contains(e.target);
+        const isClickOnToggler = toggler.contains(e.target);
+        const isClickInsideNavbarNav = navbarNav.contains(e.target);
+
+        // Close if touch is outside navbar, toggler, and the navbar container
+        if (!isClickInsideNavbar && !isClickOnToggler && !isClickInsideNavbarNav) {
+            const bsCollapse = bootstrap.Collapse.getInstance(navbar);
+            if (bsCollapse) {
+                bsCollapse.hide();
+            }
+        }
+    }, true);
+
+    // ===== NAVIGATION SCROLL HIGHLIGHTING SYSTEM =====
+    function setActiveNavLink(id) {
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+        });
+        
+        if (id) {
+            const activeLink = document.querySelector(`.nav-link[href="${id}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+    }
+    
+    function updateActiveNavLink() {
+        const sections = document.querySelectorAll('section[id]');
+        if (sections.length === 0) return;
+        
+        const navHeight = navbarNav.offsetHeight + 10;
+        const scrollPos = window.scrollY;
+        
+        let activeSection = null;
+        
+        // Find which section is currently in view
+        for (let section of sections) {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionBottom = sectionTop + sectionHeight;
+            
+            // Check if scroll position is within this section
+            if (scrollPos + navHeight >= sectionTop && scrollPos + navHeight < sectionBottom) {
+                activeSection = section.getAttribute('id');
+                break;
+            }
+        }
+        
+        // If no section found, check which is closest below viewport
+        if (!activeSection) {
+            for (let section of sections) {
+                const sectionTop = section.offsetTop;
+                if (sectionTop > scrollPos + navHeight) {
+                    activeSection = section.getAttribute('id');
+                    break;
+                }
+            }
+        }
+        
+        // Fallback to first section
+        if (!activeSection && sections.length > 0) {
+            activeSection = sections[0].getAttribute('id');
+        }
+        
+        if (activeSection) {
+            setActiveNavLink('#' + activeSection);
+        }
+    }
+    
+    // Throttled scroll event
+    let scrollTimeout = null;
+    window.addEventListener('scroll', function() {
+        if (scrollTimeout !== null) {
+            clearTimeout(scrollTimeout);
+        }
+        scrollTimeout = setTimeout(function() {
+            updateActiveNavLink();
+        }, 50);
+    }, { passive: true });
+    
+    // Initial call on page load
+    setTimeout(() => {
+        updateActiveNavLink();
+    }, 100);
 });
 
-    // Theme switching functionality
-    document.addEventListener('DOMContentLoaded', function() {
+// Theme switching functionality
+document.addEventListener('DOMContentLoaded', function() {
         // Theme selectors
         const themeBtns = document.querySelectorAll('.theme-btn');
         themeBtns.forEach(btn => {
@@ -70,8 +170,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         
         // Initialize active theme and background buttons
-        const savedTheme = localStorage.getItem('theme') || 'blue';
-        const savedBg = localStorage.getItem('bg') || 'light';
+        const savedTheme = localStorage.getItem('theme') || 'green';
+        const savedBg = localStorage.getItem('bg') || 'light-green';
         document.documentElement.setAttribute('data-theme', savedTheme);
         document.documentElement.setAttribute('data-bg', savedBg);
         
@@ -130,48 +230,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
-                    
-                    // Update active nav link on click
-                    setActiveNavLink(targetId);
                 }
             });
         });
-        
-        // Active nav link on scroll
-        function setActiveNavLink(id) {
-            // Remove active class from all nav links
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-            });
-            // Add active class to the corresponding nav link
-            const activeLink = document.querySelector(`.nav-link[href="${id}"]`);
-            if (activeLink) {
-                activeLink.classList.add('active');
-            }
-        }
-        
-        function updateActiveNavLinkOnScroll() {
-            const sections = document.querySelectorAll('section[id]');
-            const navHeight = 80; // navbar height offset
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (window.pageYOffset >= (sectionTop - navHeight - 50)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            if (current) {
-                setActiveNavLink('#' + current);
-            }
-        }
-        
-        // Update active nav link on scroll
-        window.addEventListener('scroll', updateActiveNavLinkOnScroll);
-        // Also call once on page load
-        updateActiveNavLinkOnScroll();
         
         // Mobile menu toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
@@ -385,23 +446,23 @@ document.addEventListener("DOMContentLoaded", function () {
 // Hero Carousel Data - Headlines synchronized with images
 const heroSlides = [
 {
-    title: "Inspiring Young Minds Every Day",
-    description: "Students grow best in an environment that encourages curiosity, creativity, and confidence. Our school nurtures each child with purposeful learning and supportive guidance.",
+     title: "Empowering Young Minds for the Future",
+    description: "Our school fosters academic excellence, creativity, and strong values in a nurturing environment that supports every child’s journey toward success.",
     image: "https://d6pldk4490zsr.cloudfront.net/wp-content/uploads/2019/06/5.jpg"
 },
 {
-    title: "Where Learning Feels Like Discovery",
-    description: "Education here goes beyond textbooks. Students explore ideas, develop new skills, and build a strong foundation for a bright future..",
+       title: "A Place Where Every Child Thrives",
+    description: "We provide a safe and supportive learning atmosphere where students are encouraged to explore, ask questions, and grow with confidence.",
     image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
 },
 {
-    title: "Shaping Futures with Care",
-    description: "Every child deserves encouragement and opportunity. We create a safe, positive space where students learn, express themselves, and grow confidently.",
+    title: "Building Character Alongside Knowledge",
+    description: "Beyond academics, we focus on discipline, moral values, and leadership skills to shape responsible and compassionate individuals.",
     image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
 },
 {
-    title: "World-Class Building Character Through Education Programs",
-    description:"Our focus is not only on academic success but also on values, discipline, and personal growth — preparing students for life beyond the classroom.",
+     title: "Learning Beyond the Classroom",
+    description: "Through sports, arts, cultural activities, and experiential learning, we ensure the holistic development of every student.",
     image: "https://images.unsplash.com/photo-1524178234883-043d5c3f3cf4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
 }
 ];
@@ -546,8 +607,8 @@ heroCarousel.addEventListener('slide.bs.carousel', function(event) {
 
         // Initialize theme if exists (from index.html)
         function initTheme() {
-            const savedTheme = localStorage.getItem('theme') || 'blue';
-            const savedBg = localStorage.getItem('bg') || 'light';
+            const savedTheme = localStorage.getItem('theme') || 'green';
+            const savedBg = localStorage.getItem('bg') || 'light-green';
             document.documentElement.setAttribute('data-theme', savedTheme);
             document.documentElement.setAttribute('data-bg', savedBg);
         }
@@ -572,3 +633,354 @@ document.addEventListener('DOMContentLoaded', function () {
 
     elements.forEach(el => observer.observe(el));
 });
+
+const messages = [
+    "Education shapes character, builds confidence, and opens doors to limitless opportunities.",
+    "Learning today empowers students to lead tomorrow with responsibility and integrity.",
+    "Knowledge, discipline, and values are the foundation of true success.",
+    "Great schools don’t just teach subjects, they nurture future leaders."
+];
+
+const textElement = document.getElementById("motivationText");
+let index = 0;
+
+function changeText() {
+    textElement.style.opacity = 0;
+
+    setTimeout(() => {
+        textElement.textContent = messages[index];
+        textElement.style.opacity = 1;
+        index = (index + 1) % messages.length;
+    }, 500);
+}
+
+// first text
+changeText();
+
+// change every 8 seconds
+setInterval(changeText, 8000);
+
+// ===== GALLERY SECTION =====
+// All gallery images organized in sets of 6
+const allGalleryPhotos = [
+    { src: 'Images/front.png', alt: 'Gallery Image' },
+    { src: 'Images/ad1.jpeg', alt: 'Gallery Image' },
+    { src: 'Images/amb1.jpeg', alt: 'Gallery Image' },
+    { src: 'Images/deepavali.jpeg', alt: 'Gallery Image' },
+    { src: 'Images/f087628b-4757-42b2-b46e-e97b3d2283f9.jpg.jpeg', alt: 'Gallery Image' },
+    { src: 'Images/f1.jpeg', alt: 'Gallery Image' },
+    { src: 'Images/f2.jpeg', alt: 'Gallery Image' },
+    { src: 'Images/f28b45ea-3aaf-4cb4-b812-8039edeab137.jpg.jpeg', alt: 'Gallery Image' },
+    { src: 'Images/f3.jpeg', alt: 'Gallery Image' },
+    { src: 'Images/f4.jpeg', alt: 'Gallery Image' },
+    { src: 'Images/f5.jpeg', alt: 'Gallery Image' },
+    { src: 'Images/fa1567c0-b985-4426-9175-3665a693c2e7.jpg.jpeg', alt: 'Gallery Image' },
+    { src: 'Images/greenday.jpeg', alt: 'Gallery Image' },
+    { src: 'Images/j1.jpeg', alt: 'Gallery Image' },
+    { src: 'Images/p1.jpeg', alt: 'Gallery Image' },
+    { src: 'Images/pre1.jpeg', alt: 'Gallery Image' },
+    { src: 'Images/s1.jpeg', alt: 'Gallery Image' },
+    { src: 'Images/schoolday1.jpeg', alt: 'Gallery Image' },
+    { src: 'Images/k1', alt: 'Gallery Image' },
+    { src: 'Images/staff1.jpeg', alt: 'Gallery Image' },
+    { src: 'Images/v1.jpeg', alt: 'Gallery Image' }
+];
+
+const PHOTOS_PER_PAGE = 6;
+let currentGalleryPage = 0;
+
+// Function to get photos for current page
+function getPhotosForCurrentPage() {
+    const startIndex = currentGalleryPage * PHOTOS_PER_PAGE;
+    const endIndex = startIndex + PHOTOS_PER_PAGE;
+    return allGalleryPhotos.slice(startIndex, endIndex);
+}
+
+// Function to check if there are more photos
+function hasMorePhotos() {
+    const nextPageStart = (currentGalleryPage + 1) * PHOTOS_PER_PAGE;
+    return nextPageStart < allGalleryPhotos.length;
+}
+
+// Function to update pagination dots
+function updatePaginationDots() {
+    const totalPages = Math.ceil(allGalleryPhotos.length / PHOTOS_PER_PAGE);
+    const paginationContainer = document.getElementById('galleryPagination');
+    paginationContainer.innerHTML = '';
+    
+    for (let i = 0; i < totalPages; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'pagination-dot';
+        if (i === currentGalleryPage) {
+            dot.classList.add('active');
+        }
+        dot.addEventListener('click', function() {
+            currentGalleryPage = i;
+            const photosToShow = getPhotosForCurrentPage();
+            renderGalleryItems(photosToShow);
+            updatePaginationDots();
+            updateMorePhotosButton();
+        });
+        paginationContainer.appendChild(dot);
+    }
+}
+
+// Function to update More Photos button text
+function updateMorePhotosButton() {
+    const btn = document.getElementById('morePhotosBtn');
+    if (hasMorePhotos()) {
+        btn.innerHTML = 'More Photos <i class="fas fa-arrow-right ms-2"></i>';
+    } else {
+        btn.innerHTML = 'Back to Gallery <i class="fas fa-arrow-left ms-2"></i>';
+    }
+}
+
+// Function to render gallery items
+function renderGalleryItems(images) {
+    const galleryContainer = document.getElementById('galleryContainer');
+    galleryContainer.innerHTML = '';
+    
+    images.forEach((image, index) => {
+        const col = document.createElement('div');
+        col.className = 'col-12';
+        
+        const galleryItem = document.createElement('div');
+        galleryItem.className = 'gallery-item';
+        
+        const img = document.createElement('img');
+        img.src = image.src;
+        img.alt = image.alt;
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', function() {
+            openLightbox(image.src);
+        });
+        img.addEventListener('error', function() {
+            console.warn(`Failed to load image: ${image.src}`);
+            this.style.display = 'none';
+            galleryItem.style.backgroundColor = '#e9ecef';
+            galleryItem.style.display = 'flex';
+            galleryItem.style.alignItems = 'center';
+            galleryItem.style.justifyContent = 'center';
+            const errorMsg = document.createElement('p');
+            errorMsg.style.color = '#999';
+            errorMsg.style.textAlign = 'center';
+            errorMsg.textContent = 'Image not found';
+            galleryItem.appendChild(errorMsg);
+        });
+        img.addEventListener('load', function() {
+            console.log(`Successfully loaded image: ${image.src}`);
+        });
+        
+        galleryItem.appendChild(img);
+        col.appendChild(galleryItem);
+        galleryContainer.appendChild(col);
+    });
+}
+
+// Function to load more photos
+function loadMorePhotos() {
+    if (hasMorePhotos()) {
+        // Move to next page
+        currentGalleryPage++;
+        const photosToShow = getPhotosForCurrentPage();
+        renderGalleryItems(photosToShow);
+        updatePaginationDots();
+        updateMorePhotosButton();
+    } else {
+        // Back to first page
+        currentGalleryPage = 0;
+        const photosToShow = getPhotosForCurrentPage();
+        renderGalleryItems(photosToShow);
+        updatePaginationDots();
+        updateMorePhotosButton();
+    }
+}
+
+// Initialize gallery on page load
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.getElementById('galleryContainer')) {
+        currentGalleryPage = 0;
+        const photosToShow = getPhotosForCurrentPage();
+        renderGalleryItems(photosToShow);
+        updatePaginationDots();
+        updateMorePhotosButton();
+    }
+});
+
+// ===== LIGHTBOX FUNCTIONALITY =====
+let currentZoomLevel = 1;
+const MIN_ZOOM = 1;
+const MAX_ZOOM = 3;
+const ZOOM_STEP = 0.2;
+
+// Gallery array tracking for arrow navigation
+let currentImageIndex = 0;
+
+// Open lightbox
+function openLightbox(imageSrc) {
+    const lightbox = document.getElementById('imageLightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    
+    // Find current index in all gallery photos
+    currentImageIndex = allGalleryPhotos.findIndex(img => img.src === imageSrc);
+    
+    lightboxImage.src = imageSrc;
+    lightbox.classList.add('active');
+    currentZoomLevel = 1;
+    resetImageZoom();
+    updateArrowButtonVisibility();
+    
+    // Prevent body scroll when lightbox is open
+    document.body.style.overflow = 'hidden';
+}
+
+// Close lightbox
+function closeLightbox() {
+    const lightbox = document.getElementById('imageLightbox');
+    lightbox.classList.remove('active');
+    currentZoomLevel = 1;
+    resetImageZoom();
+    
+    // Restore body scroll
+    document.body.style.overflow = 'auto';
+}
+
+// Zoom in function
+function zoomIn() {
+    if (currentZoomLevel < MAX_ZOOM) {
+        currentZoomLevel += ZOOM_STEP;
+        applyZoom();
+    }
+}
+
+// Zoom out function
+function zoomOut() {
+    if (currentZoomLevel > MIN_ZOOM) {
+        currentZoomLevel -= ZOOM_STEP;
+        applyZoom();
+    }
+}
+
+// Reset zoom
+function resetImageZoom() {
+    currentZoomLevel = 1;
+    applyZoom();
+}
+
+// Apply zoom transformation
+function applyZoom() {
+    const lightboxImage = document.getElementById('lightboxImage');
+    lightboxImage.style.transform = `scale(${currentZoomLevel})`;
+}
+
+// Navigate to next image
+function nextGalleryImage() {
+    if (currentImageIndex < allGalleryPhotos.length - 1) {
+        currentImageIndex++;
+        const lightboxImage = document.getElementById('lightboxImage');
+        lightboxImage.src = allGalleryPhotos[currentImageIndex].src;
+        currentZoomLevel = 1;
+        resetImageZoom();
+        updateArrowButtonVisibility();
+    }
+}
+
+// Navigate to previous image
+function prevGalleryImage() {
+    if (currentImageIndex > 0) {
+        currentImageIndex--;
+        const lightboxImage = document.getElementById('lightboxImage');
+        lightboxImage.src = allGalleryPhotos[currentImageIndex].src;
+        currentZoomLevel = 1;
+        resetImageZoom();
+        updateArrowButtonVisibility();
+    }
+}
+
+// Update arrow button visibility
+function updateArrowButtonVisibility() {
+    const prevBtn = document.getElementById('lightboxPrevBtn');
+    const nextBtn = document.getElementById('lightboxNextBtn');
+    
+    if (prevBtn) {
+        prevBtn.style.display = currentImageIndex > 0 ? 'block' : 'none';
+    }
+    if (nextBtn) {
+        nextBtn.style.display = currentImageIndex < allGalleryPhotos.length - 1 ? 'block' : 'none';
+    }
+}
+
+// Event listeners for lightbox controls
+function initializeLightboxControls() {
+    const lightbox = document.getElementById('imageLightbox');
+    const closeBtn = document.querySelector('.lightbox-close');
+    const zoomInBtn = document.getElementById('zoomInBtn');
+    const zoomOutBtn = document.getElementById('zoomOutBtn');
+    const resetZoomBtn = document.getElementById('resetZoomBtn');
+    const prevBtn = document.getElementById('lightboxPrevBtn');
+    const nextBtn = document.getElementById('lightboxNextBtn');
+    
+    if (!lightbox || !closeBtn) return; // Exit if elements don't exist
+    
+    // Close lightbox
+    closeBtn.addEventListener('click', closeLightbox);
+    
+    lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+    });
+    
+    // Zoom controls
+    if (zoomInBtn) zoomInBtn.addEventListener('click', zoomIn);
+    if (zoomOutBtn) zoomOutBtn.addEventListener('click', zoomOut);
+    if (resetZoomBtn) resetZoomBtn.addEventListener('click', resetImageZoom);
+    
+    // Arrow navigation
+    if (prevBtn) prevBtn.addEventListener('click', prevGalleryImage);
+    if (nextBtn) nextBtn.addEventListener('click', nextGalleryImage);
+    
+    // Keyboard arrow navigation
+    document.addEventListener('keydown', function(e) {
+        if (!lightbox || !lightbox.classList.contains('active')) return;
+        if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            prevGalleryImage();
+        } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            nextGalleryImage();
+        }
+    });
+}
+
+// Close on Escape key
+document.addEventListener('keydown', function(e) {
+    const lightbox = document.getElementById('imageLightbox');
+    if (e.key === 'Escape' && lightbox && lightbox.classList.contains('active')) {
+        closeLightbox();
+    }
+});
+
+// Keyboard shortcuts for zoom
+document.addEventListener('keydown', function(e) {
+    const lightbox = document.getElementById('imageLightbox');
+    if (!lightbox || !lightbox.classList.contains('active')) return;
+    
+    if (e.key === '+' || e.key === '=') {
+        e.preventDefault();
+        zoomIn();
+    } else if (e.key === '-') {
+        e.preventDefault();
+        zoomOut();
+    } else if (e.key === '0') {
+        e.preventDefault();
+        resetImageZoom();
+    }
+});
+
+// Initialize lightbox when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeLightboxControls);
+} else {
+    initializeLightboxControls();
+}
