@@ -461,9 +461,9 @@ const heroSlides = [
     image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
 },
 {
-     title: "Learning Beyond the Classroom",
-    description: "Through sports, arts, cultural activities, and experiential learning, we ensure the holistic development of every student.",
-    image: "https://images.unsplash.com/photo-1524178234883-043d5c3f3cf4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
+    title: "Celebrating Culture & Traditions",
+    description: "Through festivals, cultural programs, traditional activities, and community celebrations, we nurture respect for heritage while helping students understand values, unity, and cultural diversity.",
+    image: "https://images.unsplash.com/photo-1600689416865-31b6d7b0f9f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
 }
 ];
 
@@ -666,6 +666,27 @@ const allGalleryPhotos = [
     { src: 'Images/g1.jpeg', alt: 'Gallery Image 1' },
     { src: 'Images/g2.jpeg', alt: 'Gallery Image 14' },
     { src: 'Images/g3.jpeg', alt: 'Gallery Image 13' },
+    { src: 'Images/m1.png', alt: 'School Memory' },
+    { src: 'Images/m2.png', alt: 'School Memory' },
+    { src: 'Images/m3.png', alt: 'School Memory' },
+    { src: 'Images/m4.png', alt: 'School Memory' },
+    { src: 'Images/m5.png', alt: 'School Memory' },
+    { src: 'Images/m6.png', alt: 'School Memory' },
+    { src: 'Images/m7.png', alt: 'School Memory' },
+    { src: 'Images/m8.png', alt: 'School Memory' },
+    { src: 'Images/m9.png', alt: 'School Memory' },
+    { src: 'Images/m10.png', alt: 'School Memory' },
+    { src: 'Images/m11.png', alt: 'School Memory' },
+    { src: 'Images/m12.png', alt: 'School Memory' },
+    { src: 'Images/m13.png', alt: 'School Memory' },
+    { src: 'Images/m14.png', alt: 'School Memory' },
+    { src: 'Images/prasana.png', alt: 'Student Photo' },
+    { src: 'Images/sports.webp', alt: 'Sports Activity' },
+    { src: 'Images/v1.png', alt: 'School Video Thumbnail' },
+    { src: 'Images/v7.jpeg', alt: 'School Video Thumbnail' },
+    { src: 'Images/v8.jpeg', alt: 'School Video Thumbnail' },
+    { src: 'Images/v9.jpeg', alt: 'School Video Thumbnail' },
+    { src: 'Images/v11.jpeg', alt: 'School Video Thumbnail' },
     { src: 'Images/g4.jpeg', alt: 'Gallery Image 4' },
     { src: 'Images/g5.jpeg', alt: 'Gallery Image 5' },
     { src: 'Images/g6.jpeg', alt: 'Gallery Image 6' },
@@ -696,7 +717,12 @@ const allGalleryPhotos = [
     { src: 'Images/d2.jpeg', alt: 'School Activities 2' },
     { src: 'Images/d3.jpeg', alt: 'School Activities 3' },
     { src: 'Images/d5.jpeg', alt: 'School Activities 5' },
-    { src: 'Images/n5.jpeg', alt: 'School Activities 10' }
+    { src: 'Images/n5.jpeg', alt: 'School Activities 10' },
+    { src: 'Images/A1.png', alt: 'School Activity' },
+    { src: 'Images/A2.jpg', alt: 'School Activity' },
+    { src: 'Images/eve1.png', alt: 'School Event' },
+    { src: 'Images/group.png', alt: 'Group Photo' },
+    { src: 'Images/v12.jpeg', alt: 'School Video Thumbnail' }
 ];
 
 const PHOTOS_PER_PAGE = 6;
@@ -932,6 +958,7 @@ function initializeLightboxControls() {
     const resetZoomBtn = document.getElementById('resetZoomBtn');
     const prevBtn = document.getElementById('lightboxPrevBtn');
     const nextBtn = document.getElementById('lightboxNextBtn');
+    const lightboxImage = document.getElementById('lightboxImage');
     
     if (!lightbox || !closeBtn) return; // Exit if elements don't exist
     
@@ -943,6 +970,22 @@ function initializeLightboxControls() {
             closeLightbox();
         }
     });
+    
+    // Double-click to zoom in/out on the image
+    if (lightboxImage) {
+        lightboxImage.addEventListener('dblclick', function(e) {
+            e.stopPropagation(); // Prevent click from bubbling to lightbox
+            if (currentZoomLevel === MIN_ZOOM) {
+                // If at minimum zoom, zoom in to maximum
+                currentZoomLevel = MAX_ZOOM;
+                applyZoom();
+            } else {
+                // If zoomed in, reset to minimum zoom
+                currentZoomLevel = MIN_ZOOM;
+                applyZoom();
+            }
+        });
+    }
     
     // Zoom controls
     if (zoomInBtn) zoomInBtn.addEventListener('click', zoomIn);
@@ -996,4 +1039,134 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initializeLightboxControls);
 } else {
     initializeLightboxControls();
+}
+
+// ===== VIDEO MODAL FUNCTIONALITY =====
+let videosData = [];
+let currentVideoIndex = 0;
+
+function initializeVideoControls() {
+    const videoContainers = document.querySelectorAll('.video-container');
+    const videoModal = document.getElementById('videoModal');
+    const videoModalClose = document.querySelector('.video-modal-close');
+    const fullscreenVideo = document.getElementById('fullscreenVideo');
+    
+    if (videoContainers.length === 0 || !videoModal || !fullscreenVideo) return;
+    
+    // Store all video sources
+    videosData = [];
+    videoContainers.forEach((container, index) => {
+        const video = container.querySelector('.embedded-video');
+        const source = video.querySelector('source');
+        if (source && source.src) {
+            videosData.push({
+                src: source.src,
+                video: video,
+                container: container
+            });
+        }
+    });
+    
+    // Start autoplay for the first video
+    if (videosData.length > 0) {
+        autoplayVideos();
+    }
+    
+    // Add click handlers to each video container
+    videoContainers.forEach((container, index) => {
+        const playBtn = container.querySelector('.video-play-btn');
+        const video = container.querySelector('.embedded-video');
+        
+        if (playBtn) {
+            playBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                openVideoModal(index);
+            });
+        }
+        
+        if (video) {
+            video.addEventListener('click', function() {
+                openVideoModal(index);
+            });
+        }
+    });
+    
+    // Close modal when clicking the close button
+    videoModalClose.addEventListener('click', closeVideoModal);
+    
+    // Close modal when clicking outside the video content
+    videoModal.addEventListener('click', function(e) {
+        if (e.target === videoModal) {
+            closeVideoModal();
+        }
+    });
+    
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+            closeVideoModal();
+        }
+    });
+}
+
+function autoplayVideos() {
+    if (videosData.length === 0) return;
+    
+    let videoIndex = 0;
+    
+    function playNextVideo() {
+        if (videoIndex < videosData.length) {
+            const videoData = videosData[videoIndex];
+            const video = videoData.video;
+            
+            // Reset video
+            video.currentTime = 0;
+            video.play();
+            
+            // When video ends, play next one
+            const onEnded = () => {
+                video.removeEventListener('ended', onEnded);
+                videoIndex++;
+                playNextVideo();
+            };
+            
+            video.addEventListener('ended', onEnded);
+        }
+    }
+    
+    playNextVideo();
+}
+
+function openVideoModal(index) {
+    if (index < 0 || index >= videosData.length) return;
+    
+    const videoModal = document.getElementById('videoModal');
+    const fullscreenVideo = document.getElementById('fullscreenVideo');
+    const videoData = videosData[index];
+    
+    currentVideoIndex = index;
+    
+    // Set fullscreen video source
+    fullscreenVideo.src = videoData.src;
+    videoModal.classList.add('active');
+    fullscreenVideo.play();
+}
+
+function closeVideoModal() {
+    const videoModal = document.getElementById('videoModal');
+    const fullscreenVideo = document.getElementById('fullscreenVideo');
+    videoModal.classList.remove('active');
+    fullscreenVideo.pause();
+    
+    // Restart autoplay from beginning when modal closes
+    setTimeout(() => {
+        autoplayVideos();
+    }, 500);
+}
+
+// Initialize video controls when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeVideoControls);
+} else {
+    initializeVideoControls();
 }
