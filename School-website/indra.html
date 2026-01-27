@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indra Convent</title>
+    <!-- Bootstrap 5 CSS -->
+    <!-- Favicon and App Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    
+    <link rel="manifest" href="favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Customizer Panel -->
+    <!-- <div class="customizer-toggle">
+        <i class="fas fa-palette"></i>
+    </div>
+    <div class="customizer-panel">
+        <div class="customizer-header">
+            <h5>Customize Appearance</h5>
+            <button class="btn-close customizer-close"></button>
+        </div>
+        <div class="customizer-option">
+            <h6>Color Theme</h6>
+            <div class="theme-options">
+                <button class="theme-btn theme-blue active" data-theme="blue"></button>
+                <button class="theme-btn theme-green" data-theme="green"></button>
+                <button class="theme-btn theme-red" data-theme="red"></button>
+                <button class="theme-btn theme-purple" data-theme="purple"></button>
+                <button class="theme-btn theme-orange" data-theme="orange"></button>
+                <button class="theme-btn theme-pink" data-theme="pink"></button>
+                <button class="theme-btn theme-teal" data-theme="teal"></button>
+            </div>
+        </div>
+        <div class="customizer-option">
+            <h6>Background</h6>
+            <div class="bg-options">
+                <div class="bg-option bg-light active" data-bg="light"></div>
+                <div class="bg-option bg-dark" data-bg="dark"></div>
+                <div class="bg-option bg-gradient" data-bg="gradient"></div>
+                <div class="bg-option bg-light-blue" data-bg="light-blue"></div>
+                <div class="bg-option bg-light-green" data-bg="light-green"></div>
+                <div class="bg-option bg-light-pink" data-bg="light-pink"></div>
+                <div class="bg-option bg-light-orange" data-bg="light-orange"></div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3">
+        <div class="container">
+            <a class="navbar-brand" href="indra.html">
+                <img src="Images/indralogo.png" alt="School Logo" style="height: 40px; margin-right: 10px;"> 
+                Indra Convent</span>
+            </a>
+            <button class="navbar-toggler p-0 border-0" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navbarContent"
+            aria-controls="navbarContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <i class="fas fa-bars" style="font-size:22px;"></i>
+             </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#articles">Articles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#achievements">Achievements</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#events">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Gallery</a>
+                    </li>
+                   <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="index.html" role="button" data-bs-toggle="dropdown">
+                        Institution And Trust
+                    </a>
+                        <ul class="dropdown-menu">
+                   <li>
+                    <a class="nav-link" href="index.html">Trust</a>
+                    <a class="nav-link" href="sbp.html">SBP School</a></li>    
+                         </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>   
+                    <li class="nav-item">
+                         <a class="nav-link" href="Newtonian.html">NLS</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<!-- Hero Section with Carousel -->
+<section class="hero" id="home">
+    <div class="container">
+        <div class="row align-items-center hero-row">
+            <div class="col-lg-6 hero-content" data-aos="flip-up" style="margin-top:35px; order: 1;">
+                <!-- Dynamic Headline Content -->
+                <div id="hero-headline">
+                    <h1 id="hero-title">Inspiring Minds Through Learning</h1>
+                    <p id="hero-description">
+                        Discover stories, innovations, and insights shaping the future of education. 
+                        From classroom success to modern teaching methods, explore articles that empower every learner.
+                    </p>
+                    <a href="#articles" class="btn btn-primary me-3">Explore Articles</a>
+                </div>
+            </div>
+            <div class="col-lg-6 lg-0" style="order: 2;">
+                <!-- Carousel -->
+                <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="hero-img">
+                                <img src="Images/e1.jpeg"
+                                     alt="Education Technology" class="d-block w-100">
+                            </div>
+                        </div>
+                        <div class="carousel-item " data-aos="flip-left">
+                            <div class="hero-img">
+                                <img src="Images/k1.jpeg" 
+                                     alt="School Children Learning" class="d-block w-100">
+                            </div>
+                        </div>
+                        <div class="carousel-item" data-aos="flip-right">
+                            <div class="hero-img">
+                                <img src="Images/inde.jpeg" 
+                                     alt="Teacher Guiding Students" class="d-block w-100">
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <div class="hero-img">
+                                <img src="Images/trust2.png"  alt="Group Study" class="d-block w-100">
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+
+                    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section" id="about">
+    <div class="container">
+        <div class="section-title">
+            <h2>About Our School</h2>
+            <p>Knowledge is Power, Education is Life</p>
+        </div>
+
+        <div class="row align-items-stretch mb-5">
+          <div class="col-lg-6">
+            <div class="about-content h-100">
+                <h3>Introduction</h3>
+
+                <p>
+                    <strong>Indra Convent</strong> is a well-established
+                    educational institution dedicated to providing quality education rooted in strong
+                    values, discipline, and holistic development. Guided by the timeless belief that
+                    <em>“Knowledge is Power”</em>, the school strives to shape young minds into confident,
+                    responsible, and capable individuals.
+                </p>
+
+                <p>
+                    Located in <strong>Belagola, Mandya</strong>, the school was founded with a special
+                    focus on educating students from rural areas. Established under the trusted guidance
+                    of the <strong>Hombaiyya Trust</strong>, Indra Convent began its journey in
+                    <strong>2004</strong>, followed by the establishment of Shree Byraweshware Public
+                    School in <strong>2011</strong>, with the vision of making quality education accessible
+                    and affordable for all.
+                </p>
+
+                <p>
+                    Our institution believes that every child possesses unique talents and abilities.
+                    Through a nurturing and disciplined environment, we focus on academic excellence,
+                    moral values, life skills, and character building. By combining traditional values
+                    with modern teaching practices, we prepare students to meet the challenges of the
+                    future with confidence and integrity.
+                </p>
+
+                <p>
+                    Indra Convent emphasizes the importance of a balanced education that integrates
+                    academics with co-curricular and extracurricular activities. Sports, cultural
+                    programs, yoga, and creative arts are encouraged to help students develop confidence,
+                    teamwork, leadership skills, and emotional well-being.
+                </p>
+
+                <p>
+                    Our experienced and dedicated faculty members are committed to guiding students with
+                    care, patience, and professionalism. By adopting innovative teaching methodologies,
+                    continuous assessment, and individual attention, we ensure that every child receives
+                    the support needed to achieve academic success.
+                </p>
+
+            </div>
+        </div>
+
+            <div class="col-lg-6">
+                <img src="Images/indra1.png" class="img-fluid rounded" alt="School Campus">
+            </div>
+        </div>
+
+        <div class="row align-items-stretch">
+            <div class="col-lg-6 order-lg-2">
+            <div class="about-content h-100">
+                    <h3>Mission & Vision</h3>
+
+                    <p>
+                        <strong>Mission:</strong><br>
+                        The mission of Indra Convent is to provide
+                        high-quality English-medium education with a strong value-based foundation,
+                        especially for students from rural and semi-rural backgrounds. We are committed
+                        to nurturing academic excellence, discipline, ethical values, and social
+                        responsibility in a safe and supportive learning environment.
+                    </p>
+
+                    <p>
+                        We aim to empower students with critical thinking abilities, effective
+                        communication skills, creativity, and self-confidence. By fostering curiosity,
+                        respect, and lifelong learning, we prepare our students to succeed academically
+                        and contribute meaningfully to society.
+                    </p>
+
+                    <p>
+                        Our mission also focuses on creating an inclusive and student-centered learning
+                        environment that encourages innovation, collaboration, and personal growth. We
+                        strive to identify and nurture individual talents while promoting leadership
+                        qualities and a sense of social responsibility among students.
+                    </p>
+
+                    <p>
+                        <strong>Vision:</strong><br>
+                        Our vision is to develop self-reliant, confident, and morally strong individuals
+                        who are capable of making wise decisions and leading with integrity. We aspire
+                        to be a center of excellence in rural education, inspiring students to realize
+                        their full potential and become responsible citizens who positively impact the
+                        nation and the world.
+                    </p>
+
+                    <p>
+                        We envision an institution where academic excellence is balanced with character
+                        building, cultural awareness, and technological advancement.
+                    </p>
+
+                </div>
+            </div>  
+
+            <div class="col-lg-6 order-lg-1">
+                <img src="Images/yoga.jpeg" class="img-fluid rounded" alt="Students Learning">
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Articles Section -->
+    <section class="section bg-light" id="articles" data-aos="slide-up">
+        <div class="container">
+            <div class="section-title">
+                <h2>Latest Articles</h2>
+                <p>Insights and perspectives from our educators and thought leaders</p>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="article-card" data-article="1">
+                        <img src="https://images.unsplash.com/photo-1585241936939-be4099591252?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXJ0aWNsZXxlbnwwfHwwfHx8MA%3D%3D" alt="Future of Education" class="article-img"  href="article-details.html?id=1">
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <span><i class="far fa-calendar me-1"></i> Oct 12, 2023</span>
+                                <div class="article-author">
+                                    <span>Dr. Sarah Chen</span>
+                                </div>
+                            </div>
+                            <h4 class="mb-3">The Future of Education: Technology in the Classroom</h4>
+                            <p class="mb-3">Exploring how emerging technologies are transforming teaching methods and student learning experiences in the 21st century classroom.</p>
+                           <a class="btn btn-sm btn-outline-primary read-more-btn" href="article-details.html?id=1">
+                            Read More <i class="fas fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="article-card" data-article="2">
+                        <img src="https://images.unsplash.com/photo-1476242906366-d8eb64c2f661?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Student Wellbeing" class="article-img">
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <span><i class="far fa-calendar me-1"></i> Oct 5, 2023</span>
+                                <div class="article-author">
+                                    <span>Dr. Michael Rodriguez</span>
+                                </div>
+                            </div>
+                            <h4 class="mb-3">Prioritizing Student Mental Health in Academic Settings</h4>
+                            <p class="mb-3">A comprehensive look at strategies schools can implement to support student wellbeing and create a balanced learning environment.</p>
+                              <a class="btn btn-sm btn-outline-primary read-more-btn" href="article-details.html?id=2">
+                            Read More <i class="fas fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="article-card" data-article="3">
+                        <img src="https://images.unsplash.com/photo-1635942046031-041e9baea8bd?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Inclusive Education" class="article-img">
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <span><i class="far fa-calendar me-1"></i> Sep 28, 2023</span>
+                                <div class="article-author">
+                                    <span>Prof. Elena Petrova</span>
+                                </div>
+                            </div>
+                            <h4 class="mb-3">Creating Inclusive Learning Environments for All Students</h4>
+                            <p class="mb-3">How schools can adapt teaching methodologies and physical spaces to accommodate diverse learning needs and abilities.</p>
+                              <a class="btn btn-sm btn-outline-primary read-more-btn" href="article-details.html?id=3">
+                            Read More <i class="fas fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+        <div class="text-center mt-4">
+            <a href="articles.html#articles" class="btn btn-primary">View All Articles</a>
+        </div>
+    </section>
+    
+   <!-- Achievements Section -->
+<section class="section" id="achievements" data-aos="slide-up">
+    <div class="container">
+        <div class="section-title">
+            <h2>School News </h2>
+            <p>Celebrating the remarkable accomplishments of our students and faculty</p>
+        </div>
+        <div class="row">
+
+                <!-- Achievement 1 : Independence Day -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card" data-achievement="1">
+                <img src="Images/trust2.png" class="card-img-top" alt="Independence Day Celebration">
+                <div class="card-body">
+                    <span class="card-category">National Celebration</span>
+                    <h5 class="card-title">Independence Day Celebration</h5>
+                    <p class="card-text">
+                        The school proudly celebrated Independence Day with a flag hoisting ceremony, the national
+                        anthem, patriotic speeches, and cultural performances. The event inspired students to
+                        respect our freedom fighters and embrace the values of unity, responsibility, and national
+                        pride.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+            <!-- Achievement 2 : Yoga Day -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card" data-achievement="2">
+                    <img src="Images/yoga.jpeg" class="card-img-top" alt="Yoga">
+                    <div class="card-body">
+                        <span class="card-category">Health & Wellness</span>
+                        <h5 class="card-title">International Yoga Day Celebration</h5>
+                        <p class="card-text">
+                            Our school celebrated International Yoga Day with active participation from
+                            students and staff, promoting physical fitness, mental well-being, and a
+                            healthy lifestyle.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Achievement 3 : Environment Awareness -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card" data-achievement="3">
+                    <img src="Images/e2.jpeg" class="card-img-top" alt="Environment Awareness">
+                    <div class="card-body">
+                        <span class="card-category">Environment</span>
+                        <h5 class="card-title">Environment Awareness Program</h5>
+                        <p class="card-text">
+                            The school organized an Environment Awareness Program to educate students about the
+                            importance of protecting nature. Activities such as tree plantation, poster making, and
+                            cleanliness drives encouraged students to develop eco-friendly habits and a sense of
+                            responsibility towards the environment.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Events Section - Redesigned -->
+<section class="section " id="events" data-aos="slide-up">
+    <div class="container">
+        <div class="section-title">
+            <h2>Events</h2>
+            <p>Join us for enriching experiences that extend learning beyond the classroom</p>
+        </div>
+        <div class="row">
+            <!-- Event 1: Yellow Day -->
+           <div class="col-lg-4 col-md-6 mb-4">
+    <div class="event-card">
+        <div class="event-date">
+            <div class="event-day">15</div>
+            <div class="event-month">OCT</div>
+        </div>
+        <img src="Images/indraevent.png" alt="Fancy Dress Competition" class="event-img">
+        <div class="event-content">
+            <div class="event-time">
+                <i class="far fa-clock me-2"></i> 9:00 AM - 4:00 PM
+            </div>
+            <div class="event-location">
+                <i class="fas fa-map-marker-alt me-2"></i> School Campus
+            </div>
+            <h4 class="mb-2">Fancy Dress Competition</h4>
+            <p class="mb-3">
+                A vibrant and entertaining fancy dress event where students showcase their creativity by dressing up as their favorite characters, community helpers, national leaders, or imaginative figures. The program boosts confidence, public speaking skills, and self-expression while creating a joyful and memorable experience for everyone.
+                </p>
+            </div>
+        </div>
+    </div>
+       <div class="col-md-6 col-lg-4">
+            <div class="event-card">
+                <div class="event-img">
+                    <img src="Images/schoolday.png" alt="School Day Celebration">
+                </div>
+                <div class="event-content">
+                    <span class="event-category">Celebration</span>
+                    <h4>Annual School Day Celebration</h4>
+                    <p>
+                        The Annual School Day was celebrated with great enthusiasm and joy. The event featured
+                        cultural performances, student presentations, and prize distributions, showcasing the
+                        talents, achievements, and all-round development of our students in a festive and
+                        memorable atmosphere.
+                    </p>
+                    <div class="event-meta">
+                        <span><i class="fas fa-calendar me-1"></i> Sep 18, 2025</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <!-- Event 3: Sports Winners -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                <div class="event-card">
+                    <div class="event-date">
+                        <div class="event-day">05</div>
+                        <div class="event-month">JUN</div>
+                    </div>
+                    <img src="Images/e1.jpeg" alt="Environmental Day Celebration" class="event-img">
+                    <div class="event-content">
+                        <div class="event-time">
+                            <i class="far fa-clock me-2"></i> 9:00 AM - 4:00 PM
+                        </div>
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt me-2"></i> School Campus
+                        </div>
+                        <h4 class="mb-2">World Environmental Day</h4>
+                        <p class="mb-3">
+                            World Environmental Day is celebrated to create awareness among students about protecting nature and preserving our planet. Through activities like tree plantation, poster making, eco-friendly crafts, speeches, and cleanliness drives, students learn the importance of caring for the environment and developing responsible, sustainable habits for a greener future.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+       
+    </div>
+</section>
+        <!-- <div class="container">
+            <div class="section-title">
+                <h2>Important Notifications</h2>
+                <p>Stay updated with the latest announcements from our school administration</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="notification-card">
+                        <div class="notification-header">
+                            <div class="notification-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="notification-title">
+                                <h5 class="mb-1">Revised Academic Calendar</h5>
+                            </div>
+                            <div class="notification-date">Oct 5, 2023</div>
+                        </div>
+                        <div class="notification-body">
+                            <p>The second semester will begin on January 15th, 2024. Please check the student portal for the complete updated schedule, including examination dates and holiday breaks.</p>
+                            <p>Important dates to remember:</p>
+                            <ul>
+                                <li>Semester 2 begins: January 15, 2024</li>
+                                <li>Mid-term exams: March 10-15, 2024</li>
+                                <li>Spring break: April 1-5, 2024</li>
+                                <li>Final exams: June 3-14, 2024</li>
+                            </ul>
+                            <div class="notification-tags">
+                                <span class="notification-tag">Academic</span>
+                                <span class="notification-tag">Calendar</span>
+                                <span class="notification-tag">Important</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="notification-card">
+                        <div class="notification-header">
+                            <div class="notification-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="notification-title">
+                                <h5 class="mb-1">Scholarship Applications Open</h5>
+                            </div>
+                            <div class="notification-date">Oct 1, 2023</div>
+                        </div>
+                        <div class="notification-body">
+                            <p>Merit-based scholarships for grades 9-12 are now accepting applications. These scholarships recognize academic excellence, leadership, and community service.</p>
+                            <p>Available scholarships include:</p>
+                            <ul>
+                                <li>Academic Excellence Scholarship (up to $5,000)</li>
+                                <li>STEM Achievement Scholarship (up to $3,000)</li>
+                                <li>Community Leadership Award (up to $2,500)</li>
+                                <li>Arts and Creativity Grant (up to $2,000)</li>
+                            </ul>
+                            <p><strong>Deadline:</strong> November 30th, 2023</p>
+                            <div class="notification-tags">
+                                <span class="notification-tag">Scholarship</span>
+                                <span class="notification-tag">Financial Aid</span>
+                                <span class="notification-tag">Deadline</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="notification-card">
+                        <div class="notification-header">
+                            <div class="notification-icon">
+                                <i class="fas fa-bus"></i>
+                            </div>
+                            <div class="notification-title">
+                                <h5 class="mb-1">Bus Route Changes</h5>
+                            </div>
+                            <div class="notification-date">Sep 28, 2023</div>
+                        </div>
+                        <div class="notification-body">
+                            <p>New bus routes will be effective from October 10th, 2023. Please check the transportation section on the school portal for updated route maps and schedules.</p>
+                            <p>Key changes include:</p>
+                            <ul>
+                                <li>Route A: Extended to cover the new Maplewood subdivision</li>
+                                <li>Route B: Schedule adjusted by 15 minutes earlier</li>
+                                <li>Route C: New pickup point at Central Park</li>
+                                <li>Route D: Temporarily suspended due to road construction</li>
+                            </ul>
+                            <div class="notification-tags">
+                                <span class="notification-tag">Transportation</span>
+                                <span class="notification-tag">Update</span>
+                                <span class="notification-tag">Safety</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="notification-card">
+                        <div class="notification-header">
+                            <div class="notification-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="notification-title">
+                                <h5 class="mb-1">Health & Safety Guidelines Update</h5>
+                            </div>
+                            <div class="notification-date">Sep 25, 2023</div>
+                        </div>
+                        <div class="notification-body">
+                            <p>Updated health and safety protocols will be implemented starting October 1st. These measures are designed to ensure the wellbeing of all students and staff.</p>
+                            <p>Important updates:</p>
+                            <ul>
+                                <li>Enhanced cleaning protocols in all common areas</li>
+                                <li>Hand sanitizer stations added throughout campus</li>
+                                <li>Revised sick policy - students must be symptom-free for 24 hours before returning</li>
+                                <li>New air filtration systems installed in classrooms</li>
+                            </ul>
+                            <div class="notification-tags">
+                                <span class="notification-tag">Health</span>
+                                <span class="notification-tag">Safety</span>
+                                <span class="notification-tag">Protocols</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="articles.html#notifications" class="btn btn-primary">View All notifications <i class="fas fa-arrow-right ms-2"></i></a>
+            </div>
+        </div>
+    </section>  -->
+    <!-- Gallery Section -->
+    <section class="section bg-light" id="gallery" data-aos="slide-up">
+        <div class="container">
+            <div class="section-title">
+                <h2>Gallery</h2>
+                <p>Capturing moments of learning, joy, and achievement</p>
+            </div>
+            <div class="row gallery-grid" id="galleryContainer">
+                <!-- Gallery items will be inserted here by JavaScript -->
+            </div>
+            
+            <!-- Pagination Indicator -->
+            <div class="text-center mt-4 mb-4">
+                <div class="gallery-pagination" id="galleryPagination">
+                    <!-- Pagination dots will be inserted here by JavaScript -->
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <button class="btn btn-primary" id="morePhotosBtn" onclick="loadMorePhotos()">
+                    More Photos <i class="fas fa-arrow-right ms-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact" data-aos="slide-up">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>Reach out to us for admissions, partnerships, or general inquiries</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h5>Our Location</h5>
+                                <p>Arakeshwar Nagar, Mandya, Karnataka 571403</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                             <div class="contact-details">
+                                <h5>Phone</h5>
+                                <a href="tel: +91 8747011791"> +91 8747011791</a>
+                                <br>
+                                <a href="tel: +91 8546938423"> +91 8546938423</a>
+                                <br>
+                                <a href="tel:  +91 7259547922">+91 7259547922</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h5>Email</h5>
+                                <a href="mailto:shribyrawa2005@gmail.com"><span style="word-break: break-all;">shribyrawa2005@gmail.com</span></a>
+                                <br>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h5>Working Hours</h5>
+                                <p>Monday - Friday: 8:00 AM - 5:30 PM</p>
+                                <p>Saturday: 8:00 AM - 2:00 PM </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div class="col-lg-6">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <h4 class="mb-4">Our Location</h4>
+                        <!-- Google Map -->
+                        <div class="google-map mb-3 rounded overflow-hidden">
+                            <iframe
+                           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3894.8375075002177!2d76.91357407551942!3d12.52692152447059!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bafa11d158cd497%3A0xded0b90ce8feaaec!2sIndira%20Convent!5e0!3m2!1sen!2sin!4v1768808124021!5m2!1sen!2sin" 
+                            width="100%"
+                            height="300"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                        <!-- Direction Button -->
+                        <a href="https://maps.app.goo.gl/y5m62wfgEybaxMQx7"
+                        target="_blank"
+                        class="btn btn-primary w-100" style="max-width: fit-content;">
+                            Get Directions
+                        </a>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+   <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h5>Indra Convent</h5>
+                    <p>Knowledge is Power, Education is Life</p>
+                   <div class="social-links">
+                        <a href="https://www.facebook.com/share/16ZMuPs6E7/" target = blank><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/sbpschoolbelagola?igsh=MW1pNTZ1cmFxd3lsYg==" target = blank><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com/@shreebhyravaindiraeducation?si=ENWRTnnm9WAc4wde" target = blank><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 col-6 mb-4 mb-md-0">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-links ms-0 p-0">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="articles.html">Articles</a></li>
+                        <li><a href="sbp.html#events">Events</a></li>
+                    </ul>
+                </div>
+               <div class="col-md-3">
+                    <h5>School Information</h5>
+                    <p class="mt-3">
+                        Office Hours: <br>
+                        Monday – Friday: 8:00 AM – 5:30 PM <br>
+                        Saturday: 8:00 AM – 2:00 PM
+                    </p>
+                    <p class="mb-1"><strong>Phone:</strong> +91 9986747242 </p>
+                    <p class="mb-0"><strong>Email:</strong> <span style="word-break: break-all;">shribyrawa2005@gmail.com</span></p>
+                    
+                </div>
+                  <div class="col-md-4 ">
+            <div class="footer-motivation">
+                 <h5 class="footer-title">Knowledge is Power,Education is Life</h5>
+                <p id="motivationText" class="motivation-text"></p>
+            </div>
+        </div>
+            <div class="copyright d-flex">
+                <h5 >&copy; 2026 Shree Byraweshwara Educational and Development Foundation</h5>
+                </div>
+                <div>
+                <p class="mb-0">Powered by <a href="https://zeravshantechnologies.com/" target="_blank" style="color: rgb(248, 248, 248); ">Zeravshan Technologies</a> in collaboration with <a href="https://newtonianlearningsolutions.com" target="_blank" style="color: white; ">Newtonian Learning Solutions</a>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Image Lightbox Modal -->
+    <div id="imageLightbox" class="lightbox-modal">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-content">
+            <button id="lightboxPrevBtn" class="lightbox-arrow lightbox-prev" title="Previous Image">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <img id="lightboxImage" src="" alt="Gallery Image" class="lightbox-image">
+            <button id="lightboxNextBtn" class="lightbox-arrow lightbox-next" title="Next Image">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="lightbox-controls">
+                  
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('Service Worker registered successfully:', registration);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
