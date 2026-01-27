@@ -106,7 +106,7 @@ font-weight: 700;
 }
 
 .container {
-max-width: 1718px;
+max-width: 2518px;
 }
 html {
   scroll-padding-top: 90px; /* adjust based on navbar height */
@@ -1912,7 +1912,7 @@ margin: 15px auto 0;
 }
 
 /* Mobile view adjustments for screens under 500px */
-@media (max-width: 500px) {
+@media (max-width: 600px) {
     html, body {
         width: 100vw;
         min-width: 0;
@@ -1925,7 +1925,7 @@ margin: 15px auto 0;
         padding-top: 65px; /* Height of navbar */
     }
     .hero{
-        margin-top: -15px!important;
+        margin-top: -85px!important;
     }
     
     /* Reorder hero elements on mobile - carousel comes first */
@@ -1950,21 +1950,21 @@ margin: 15px auto 0;
     
     .navbar .container {
         width: 100vw;
-        padding-left: 12px;
+        padding-left: 0px;
         padding-right: 12px;
     }
     
     .navbar-brand {
-        font-size: 1.4rem;
+        font-size: 1rem;
     }
     
     .navbar-brand img {
         height: 30px;
-        margin-right: 8px;
+        margin-right: 1px;
     }
     
     .navbar-toggler {
-        font-size: 18px;
+        font-size: 12px;
     }
     
     .nav-link {
@@ -2440,7 +2440,7 @@ margin: 15px auto 0;
     padding-bottom: 1px !important;
 }
 .brand-text {
-    font-size: 15px;
+    font-size: 13px;
     line-height: 1.2;
 }
 .navbar-brand {
