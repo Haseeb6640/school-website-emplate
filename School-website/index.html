@@ -653,7 +653,7 @@
         </div>
     </section>
     <!-- Admissions Enquiry CTA Section -->
-    <section class="section pb-0" id="enquiry-form" data-aos="slide-up">
+    <!-- <section class="section pb-0" id="enquiry-form" data-aos="slide-up">
         <div class="container">
             <div class="section-title">
                 <h2>Admissions Enquiry</h2>
@@ -675,8 +675,119 @@
                 </div>
             </div>
         </div>
+    </section> -->
+
+    
+    <!-- Contact Form Section -->
+    <section class="section bg-light" id="enquiry" data-aos="slide-up">
+    <div class="container">
+        <div class="section-title">
+        <h2>Send Us a Message</h2>
+        <p>For admission-related queries or any other enquiries, please fill out the form below.</p>
+        </div>
+
+        <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card contact-form-card">
+            <div class="card-body p-4">
+
+            <form
+                id="enquiryForm"
+                class="contact-form"
+                action="https://docs.google.com/forms/d/e/1FAIpQLSemewFn-ygdgeXfNZ6fGeI2N-KYsJObicBS6JdXdiMFbQOh7g/formResponse"
+                method="POST"
+                target="hidden_iframe"
+                novalidate
+                >
+                <div class="row g-3">
+
+                    <!-- First Name -->
+                    <div class="col-md-6">
+                    <label class="form-label">First Name <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" name="entry.256588311" placeholder="Enter first name" required>
+                    <div class="invalid-feedback">First name is required.</div>
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="col-md-6">
+                    <label class="form-label">Last Name <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" name="entry.843782884" placeholder="Enter last name" required>
+                    </div>
+
+                    <!-- Class (Dropdown) -->
+                    <div class="col-md-6">
+                    <label class="form-label">Class <span class="text-danger">*</span></label>
+                    <select class="form-select" name="entry.1118346054" required>
+                        <option value="">Select Class</option>
+                        <option value="M1">M1</option>
+                        <option value="M2">M2</option>
+                        <option value="1 Standard">1 Standard</option>
+                        <option value="2 Standard">2 Standard</option>
+                        <option value="3 Standard">3 Standard</option>
+                        <option value="4 Standard">4 Standard</option>
+                        <option value="5 Standard">5 Standard</option>
+                        <option value="6 Standard">6 Standard</option>
+                        <option value="7 Standard">7 Standard</option>
+                        <option value="8 Standard">8 Standard</option>
+                    </select>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="col-md-6">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" name="entry.1611246738" placeholder="name@example.com">
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="col-md-6">
+                    <label class="form-label">Phone Number <span class="text-danger">*</span></label>
+                    <input
+                        type="tel"
+                        class="form-control"
+                        name="entry.1086136648"
+                        placeholder="Enter phone number"
+                        required
+                        pattern="^[0-9()+\-\s]{7,15}$"
+                    >
+                    <div class="invalid-feedback">Valid phone number is required.</div>
+                    </div>
+                      <!-- Last Institution -->
+                    <div class="col-6">
+                    <label class="form-label">Last Institution</label>
+                    <input type="text" class="form-control" name="entry.1742380650" placeholder="Previous school/college">
+                    </div>
+                    <!-- Qualification -->
+                    <!-- <div class="col-md-6">
+                    <label class="form-label">Qualification</label>
+                    <input type="text"  class="form-control" name="entry.607483551" placeholder="e.g., 10th ICSE">
+                    </div> -->
+
+                    <!-- Address -->
+                    <div class="col-12">
+                    <label class="form-label">Address <span class="text-danger">*</span></label>
+                    <textarea class="form-control" name="entry.1234993695" rows="3" placeholder="Enter full address" required></textarea>
+                    <div class="invalid-feedback">Address is required.</div>
+                    </div>
+
+                  
+
+                    <!-- Submit -->
+                    <div class="col-12 text-center mt-2">
+                    <button type="submit" class="btn btn-primary px-5">Submit</button>
+                    </div>
+
+                </div>
+                </form>
+
+                <!-- Hidden iframe -->
+                <iframe name="hidden_iframe" style="display:none;"></iframe>
+
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
     </section>
-   <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="row">
@@ -758,9 +869,59 @@
             </div>
         </div>
     </div>
+    <!-- Success Toast -->
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+    <div id="successToast" class="toast align-items-center text-bg-success border-0" role="alert">
+        <div class="d-flex">
+        <div class="toast-body">
+            ✅ Your enquiry has been submitted successfully!
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+        </div>
+    </div>
+    </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="main.js"></script>
+  <script>
+  let submitted = false;
+
+  const form = document.getElementById("enquiryForm");
+  const iframe = document.querySelector("iframe[name='hidden_iframe']");
+
+  form.addEventListener("submit", function (e) {
+    // Bootstrap validation check
+    if (!form.checkValidity()) {
+      e.preventDefault();
+      e.stopPropagation();
+      form.classList.add("was-validated");
+      return; // ❌ stop here, no submit, no toast
+    }
+
+    // ✅ valid form → allow submit
+    submitted = true;
+    form.classList.add("was-validated");
+  });
+
+  iframe.addEventListener("load", function () {
+    if (!submitted) return;
+
+    // Show success toast
+    const toast = new bootstrap.Toast(
+      document.getElementById("successToast"),
+      { delay: 3000 }
+    );
+    toast.show();
+
+    // Reset form + validation state
+    form.reset();
+    form.classList.remove("was-validated");
+
+    submitted = false;
+  });
+</script>
+
+
 </body>
 </html>

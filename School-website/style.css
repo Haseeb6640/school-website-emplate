@@ -901,6 +901,26 @@ color: var(--text-secondary);
 }
 
 /* Contact Section */
+.contact-form-card {
+  border: none;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.contact-form .form-label {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.contact-form .form-control::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--text-secondary);
+}
+
+.contact-form .btn {
+  border-radius: 50px;
+}
+
 .contact-info {
 padding: 2rem;
 background: white;
@@ -949,9 +969,13 @@ transition: var(--transition);
 }
 
 [data-bg="dark"] .contact-form .form-control {
-background-color: #374151;
-border-color: #4b5563;
-color: white;
+    background-color: #374151;
+    border-color: #4b5563;
+    color: white;
+}
+
+[data-bg="dark"] .contact-form .form-label {
+  color: var(--text-primary);
 }
 
 .contact-form .form-control:focus {
