@@ -30,7 +30,7 @@ async function loadArticle() {
                 category: "Technology",
                 year: 2023,
                 class: "All",
-                image: "https://i0.wp.com/www.lurnable.com/content/wp-content/uploads/2025/01/9751.jpg?fit=1000%2C667&ssl=1",
+                image: "https://images.unsplash.com/photo-1585241936939-be4099591252?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXJ0aWNsZXxlbnwwfHwwfHx8MA%3D%3D",
                 youtube: "https://youtu.be/xxxxxx"
             },
             {
@@ -110,15 +110,6 @@ async function loadArticle() {
             p.textContent = paragraph;
             articleBody.appendChild(p);
         });
-
-        // Update YouTube video link
-        const videoSection = document.getElementById('videoSection');
-        const youtubeLink = document.getElementById('youtubeLink');
-        if (article.youtube) {
-            youtubeLink.href = article.youtube;
-        } else {
-            videoSection.style.display = 'none';
-        }
 
         // Load related articles
         loadRelatedArticles(data.articles, article.category, articleId);
@@ -259,4 +250,28 @@ document.addEventListener('DOMContentLoaded', () => {
         customizerClose.addEventListener('click', function() {
             customizerPanel.classList.remove('active');
         });
-        
+const messages = [
+    "Education shapes character, builds confidence, and opens doors to limitless opportunities.",
+    "Learning today empowers students to lead tomorrow with responsibility and integrity.",
+    "Knowledge, discipline, and values are the foundation of true success.",
+    "Great schools don’t just teach subjects, they nurture future leaders."
+];
+
+const textElement = document.getElementById("motivationText");
+let index = 0;
+
+function changeText() {
+    textElement.style.opacity = 0;
+
+    setTimeout(() => {
+        textElement.textContent = messages[index];
+        textElement.style.opacity = 1;
+        index = (index + 1) % messages.length;
+    }, 500);
+}
+
+// first text
+changeText();
+
+// change every 8 seconds
+setInterval(changeText, 8000);
