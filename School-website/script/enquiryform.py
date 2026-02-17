@@ -1,16 +1,19 @@
 import time
 import logging
-import gspread
+import random
 import requests
+import gspread
+
 from google.oauth2.service_account import Credentials
+from gspread.exceptions import APIError
 
 # =========================================================
 # CONFIGURATION
-# =========================================================
+# ========================================================= 
 SERVICE_ACCOUNT_FILE = "keys/school-enquiry-form-d1a4bfaaf6a0.json"
 SPREADSHEET_ID = "1rIufJA-mpS71VvHKyNzTJQ8BEbCgUoihv46mO4WyF4Q"
 
-CHECK_INTERVAL = 30  # seconds
+CHECK_INTERVAL = 900  # seconds (15 minutes)
 
 API_URL = "https://newtonianlearningsolutions.com/member/admin/add-new-enquiry-form/"
 INST_ID = 13
@@ -32,7 +35,7 @@ CLASS_COURSE_MAP = {
 }
 
 # =========================================================
-# LOGGING SETUP
+# LOGGING
 # =========================================================
 logging.basicConfig(
     level=logging.INFO,
@@ -54,109 +57,140 @@ def get_sheet():
         scopes=SCOPES
     )
     client = gspread.authorize(credentials)
-    logging.info("Google authentication successful")
     return client.open_by_key(SPREADSHEET_ID).sheet1
 
 # =========================================================
-# PROCESS RESPONSES (FIFO QUEUE)
+# SAFE GOOGLE READ WITH BACKOFF
+# =========================================================
+def safe_get_records(sheet, retries=5):
+    delay = 5
+
+    for attempt in range(1, retries + 1):
+        try:
+            if sheet.row_count <= 1:
+                return []
+
+            return sheet.get_all_records()
+
+        except APIError as e:
+            if "503" in str(e):
+                logging.warning(
+                    "Google API 503 (attempt %s/%s). Retrying in %ss",
+                    attempt, retries, delay
+                )
+                time.sleep(delay)
+                delay = min(delay * 2, 120)
+            else:
+                raise
+
+    logging.error("Google API unavailable after retries")
+    return []
+
+# =========================================================
+# PROCESS SINGLE RESPONSE (FIFO + LOCKED)
 # =========================================================
 def process_responses(sheet):
-    while True:
-        rows = sheet.get_all_records()
+    rows = safe_get_records(sheet)
 
-        if not rows:
-            logging.info("No new responses")
-            break
+    if not rows:
+        logging.info("No new responses")
+        return
 
-        # Always process the OLDEST response (row 2)
-        row = rows[0]
+    # Always process OLDEST row (row 2)
+    row = rows[0]
 
-        # -------------------------------------------------
-        # CLASS → COURSE MAPPING
-        # -------------------------------------------------
-        class_name = row.get("Class", "").strip()
-        course_id = CLASS_COURSE_MAP.get(class_name)
+    # 🔐 Skip already processed rows
+    if row.get("Processed") == "YES":
+        logging.info("Row already processed, deleting")
+        sheet.delete_rows(2)
+        return
 
-        if not course_id:
-            logging.error(f"Invalid class name: '{class_name}'")
-            break
+    class_name = row.get("Class", "").strip()
+    course_id = CLASS_COURSE_MAP.get(class_name)
 
-        # -------------------------------------------------
-        # BUILD PAYLOAD
-        # -------------------------------------------------
-        payload = {
-            "form_id": None,
-            "firstname": row.get("First Name", "").strip(),
-            "lastname": row.get("Last Name", "").strip(),
-            "email": row.get("Email"),
-            "phone_number": (
-                str(row.get("Phone Number"))
-                if row.get("Phone Number") is not None
-                else None
-            ),
-            "qualification": row.get("Qualification"),
-            "address": row.get("Address"),
-            "last_inst_attended": row.get("Last Institution Attended"),
-            "selected_course": course_id,
-            "inst_id": INST_ID
-        }
+    if not course_id:
+        logging.error("Invalid class name: '%s'", class_name)
+        return
 
-        # -------------------------------------------------
-        # REQUIRED FIELD CHECK
-        # -------------------------------------------------
-        if not payload["firstname"] or not payload["lastname"]:
-            logging.error("Firstname or Lastname missing")
-            break
+    payload = {
+        "form_id": None,
+        "firstname": row.get("First Name", "").strip(),
+        "lastname": row.get("Last Name", "").strip(),
+        "email": row.get("Email"),
+        "phone_number": (
+            str(row.get("Phone Number"))
+            if row.get("Phone Number") is not None
+            else None
+        ),
+        "qualification": row.get("Qualification"),
+        "address": row.get("Address"),
+        "last_inst_attended": row.get("Last Institution Attended"),
+        "selected_course": course_id,
+        "inst_id": INST_ID
+    }
 
-        logging.info("Sending enquiry to backend")
-        logging.info("Payload: %s", payload)
+    if not payload["firstname"] or not payload["lastname"]:
+        logging.error("Firstname or Lastname missing")
+        return
 
-        try:
-            response = requests.post(
-                API_URL,
-                json=payload,
-                timeout=10
+    logging.info(
+        "Sending enquiry → %s %s",
+        payload["firstname"],
+        payload["lastname"]
+    )
+
+    try:
+        response = requests.post(
+            API_URL,
+            json=payload,
+            timeout=15
+        )
+
+        if response.status_code in (200, 201):
+            logging.info("Backend accepted enquiry ✅")
+
+            processed_col = sheet.find("Processed").col
+            sheet.update_cell(2, processed_col, "YES")
+            sheet.delete_rows(2)
+
+        else:
+            logging.error(
+                "Backend error (%s): %s",
+                response.status_code,
+                response.text
             )
 
-            if response.status_code in (200, 201):
-                logging.info("Backend accepted enquiry ✅")
-                # DELETE ONLY AFTER SUCCESS
-                sheet.delete_rows(2)
-            else:
-                logging.error(
-                    "Backend error (%s): %s",
-                    response.status_code,
-                    response.text
-                )
-                break
+    except requests.RequestException as e:
+        logging.error("Backend request failed: %s", e)
 
-        except requests.RequestException as e:
-            logging.error("API request failed: %s", str(e))
-            break
-
-        # Small delay to avoid rate limits
-        time.sleep(1)
+    time.sleep(random.uniform(1, 2))
 
 # =========================================================
 # MAIN LOOP
 # =========================================================
 def main():
-    logging.info("Google Form Listener Started")
-    logging.info("Waiting for responses...")
+    logging.info("Google Form Listener started")
 
-    sheet = get_sheet()
-
-    try:
-        while True:
+    while True:
+        try:
+            sheet = get_sheet()
             process_responses(sheet)
-            time.sleep(CHECK_INTERVAL)
 
-    except KeyboardInterrupt:
-        logging.info("Shutdown requested (Ctrl+C)")
-        logging.info("Listener stopped gracefully")
+        except APIError as e:
+            logging.error("Google API error: %s", e)
+            time.sleep(60)
+
+        except Exception:
+            logging.exception("Unexpected error")
+            time.sleep(60)
+
+        time.sleep(CHECK_INTERVAL)
 
 # =========================================================
 # ENTRY POINT
 # =========================================================
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        logging.info("Shutdown requested. Exiting gracefully.")
