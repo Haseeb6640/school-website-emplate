@@ -666,6 +666,24 @@ setInterval(changeText, 8000);
 const allGalleryPhotos = [
     { src: 'Images/DWBH8217.JPG.jpeg', alt: 'School Event Photo' },
     { src: 'Images/event2.jpeg', alt: 'Event Celebration 2' },
+    { src: 'Images/img7.jpeg', alt: 'School Image 7' },
+    { src: 'Images/img8.jpeg', alt: 'School Image 8' },
+    { src: 'Images/img9.jpeg', alt: 'School Image 9' },
+    { src: 'Images/img10.jpeg', alt: 'School Image 10' },
+    { src: 'Images/img11.jpeg', alt: 'School Image 11' },
+    { src: 'Images/img12.jpeg', alt: 'School Image 12' },
+    { src: 'Images/img13.jpeg', alt: 'School Image 13' },
+    { src: 'Images/img14.jpeg', alt: 'School Image 14' },
+    { src: 'Images/img15.jpeg', alt: 'School Image 15' },
+    { src: 'Images/img1.jpeg', alt: 'School Image 1' },
+    { src: 'Images/img2.jpeg', alt: 'School Image 2' },
+    { src: 'Images/img3.jpeg', alt: 'School Image 3' },
+    { src: 'Images/img4.jpeg', alt: 'School Image 4' },
+    { src: 'Images/img5.jpeg', alt: 'School Image 5' },
+    { src: 'Images/img6.jpeg', alt: 'School Image 6' },
+    { src: 'Images/img16.jpeg', alt: 'School Image 16' },
+    { src: 'Images/img17.jpeg', alt: 'School Image 17' },
+    { src: 'Images/img18.jpeg', alt: 'School Image 18' },
     { src: 'Images/event3.jpeg', alt: 'Event Celebration 3' },
     { src: 'Images/event4.jpeg', alt: 'Event Celebration 4' },
     { src: 'Images/event5.jpeg', alt: 'Event Celebration 5' },
@@ -676,7 +694,7 @@ const allGalleryPhotos = [
     { src: 'Images/Home1.jpeg', alt: 'Home Page Image 1' },
     { src: 'Images/home2.jpeg', alt: 'Home Page Image 2' },
     { src: 'Images/IMG_5649.JPG.jpeg', alt: 'School Photo 5649' },
-    { src: 'Images/signal-2026-02-13-143911_005.jpeg', alt: 'Signal Image 005' },    
+    { src: 'Images/signal-2026-02-13-143911_005.jpeg', alt: 'Signal Image 005' },
     { src: 'Images/IMG_5651.JPG.jpeg', alt: 'School Photo 5651' },
     { src: 'Images/IMG_5661.JPG.jpeg', alt: 'School Photo 5661' },
     { src: 'Images/signal-2026-02-13-143911_003.jpeg', alt: 'Signal Image 003' },
@@ -686,7 +704,8 @@ const allGalleryPhotos = [
     { src: 'Images/IMG_E5651.JPG.jpeg', alt: 'School Photo E5651' },
     { src: 'Images/IMG_E5663.JPG.jpeg', alt: 'School Photo E5663' },
     { src: 'Images/signal-2026-02-13-143911_002.jpeg', alt: 'Signal Image 002' },
-    { src: 'Images/signal-2026-02-13-143911.jpeg', alt: 'Signal Image' }
+    { src: 'Images/signal-2026-02-13-143911.jpeg', alt: 'Signal Image' },
+    { src: 'Images/Logo.jpeg', alt: 'School Logo' }
 ];
 
 const PHOTOS_PER_PAGE = 6;
@@ -1004,7 +1023,132 @@ if (document.readyState === 'loading') {
 } else {
     initializeLightboxControls();
 }
+// ===== VIDEO MODAL FUNCTIONALITY =====
+let videosData = [];
+let currentVideoIndex = 0;
 
+function initializeVideoControls() {
+    const videoContainers = document.querySelectorAll('.video-container');
+    const videoModal = document.getElementById('videoModal');
+    const videoModalClose = document.querySelector('.video-modal-close');
+    const fullscreenVideo = document.getElementById('fullscreenVideo');
+    
+    if (videoContainers.length === 0 || !videoModal || !fullscreenVideo) return;
+    
+    // Store all video sources
+    videosData = [];
+    videoContainers.forEach((container, index) => {
+        const video = container.querySelector('.embedded-video');
+        const source = video.querySelector('source');
+        if (source && source.src) {
+            videosData.push({
+                src: source.src,
+                video: video,
+                container: container
+            });
+        }
+    });
+    
+    // Start autoplay for the first video
+    if (videosData.length > 0) {
+        autoplayVideos();
+    }
+    
+    // Add click handlers to each video container
+    videoContainers.forEach((container, index) => {
+        const playBtn = container.querySelector('.video-play-btn');
+        const video = container.querySelector('.embedded-video');
+        
+        if (playBtn) {
+            playBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                openVideoModal(index);
+            });
+        }
+        
+        if (video) {
+            video.addEventListener('click', function() {
+                openVideoModal(index);
+            });
+        }
+    });
+    
+    // Close modal when clicking the close button
+    videoModalClose.addEventListener('click', closeVideoModal);
+    
+    // Close modal when clicking outside the video content
+    videoModal.addEventListener('click', function(e) {
+        if (e.target === videoModal) {
+            closeVideoModal();
+        }
+    });
+    
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+            closeVideoModal();
+        }
+    });
+}
 
+function autoplayVideos() {
+    if (videosData.length === 0) return;
+    
+    let videoIndex = 0;
+    
+    function playNextVideo() {
+        if (videoIndex < videosData.length) {
+            const videoData = videosData[videoIndex];
+            const video = videoData.video;
+            
+            // Reset video
+            video.currentTime = 0;
+            video.play();
+            
+            // When video ends, play next one
+            const onEnded = () => {
+                video.removeEventListener('ended', onEnded);
+                videoIndex++;
+                playNextVideo();
+            };
+            
+            video.addEventListener('ended', onEnded);
+        }
+    }
+    
+    playNextVideo();
+}
 
+function openVideoModal(index) {
+    if (index < 0 || index >= videosData.length) return;
+    
+    const videoModal = document.getElementById('videoModal');
+    const fullscreenVideo = document.getElementById('fullscreenVideo');
+    const videoData = videosData[index];
+    
+    currentVideoIndex = index;
+    
+    // Set fullscreen video source
+    fullscreenVideo.src = videoData.src;
+    videoModal.classList.add('active');
+    fullscreenVideo.play();
+}
 
+function closeVideoModal() {
+    const videoModal = document.getElementById('videoModal');
+    const fullscreenVideo = document.getElementById('fullscreenVideo');
+    videoModal.classList.remove('active');
+    fullscreenVideo.pause();
+    
+    // Restart autoplay from beginning when modal closes
+    setTimeout(() => {
+        autoplayVideos();
+    }, 500);
+}
+
+// Initialize video controls when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeVideoControls);
+} else {
+    initializeVideoControls();
+}
