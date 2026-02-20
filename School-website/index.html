@@ -3,8 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your school name </title>
+    <title>St Mira's Inclusive Convent</title>
     <!-- Bootstrap 5 CSS -->
+    <!-- Favicon and App Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -14,7 +32,7 @@
 </head>
 <body>
     <!-- Customizer Panel -->
-    <div class="customizer-toggle">
+    <!-- <div class="customizer-toggle">
         <i class="fas fa-palette"></i>
     </div>
     <div class="customizer-panel">
@@ -46,14 +64,14 @@
                 <div class="bg-option bg-light-orange" data-bg="light-orange"></div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3">
         <div class="container">
-            <a class="navbar-brand" href="#home">
-                <img src="https://static.vecteezy.com/system/resources/previews/039/630/346/non_2x/school-logo-creative-concept-open-book-and-positive-students-colorful-design-isolated-icon-identity-idea-symbol-of-learning-or-reading-schoolbook-and-funny-kids-college-sign-education-emblem-vector.jpg" alt="School Logo" style="height: 40px; margin-right: 10px;"> 
-                Your<span> School name</span>
+            <a class="navbar-brand" href="index.html">
+                <img src="Images/Logo.png" alt="School Logo" style="height: 60px; margin-right: 10px;"> 
+                St Mira's Inclusive Convent</span>
             </a>
             <button class="navbar-toggler p-0 border-0" type="button"
             data-bs-toggle="collapse" data-bs-target="#navbarContent"
@@ -79,10 +97,16 @@
                         <a class="nav-link" href="#events">Events</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#notifications">Notifications</a>
+                        <a class="nav-link" href="#gallery">Gallery</a>
                     </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#notifications">Notifications</a>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                         <a class="nav-link" href="Newtonian.html">NLS</a>
                     </li>
                 </ul>
             </div>
@@ -92,8 +116,8 @@
 <!-- Hero Section with Carousel -->
 <section class="hero" id="home">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6 hero-content" data-aos="flip-up" style="margin-top: 35px;">
+        <div class="row align-items-center hero-row">
+            <div class="col-lg-6 hero-content" data-aos="flip-up" style="margin-top:35px; order: 1;">
                 <!-- Dynamic Headline Content -->
                 <div id="hero-headline">
                     <h1 id="hero-title">Inspiring Minds Through Learning</h1>
@@ -101,48 +125,40 @@
                         Discover stories, innovations, and insights shaping the future of education. 
                         From classroom success to modern teaching methods, explore articles that empower every learner.
                     </p>
-                    <a href="#articles" class="btn btn-primary me-3">Explore Articles</a>
-                    <a href="#about" class="btn btn-primary me-3">Know More</a>
+                    <a href="#about" class="btn btn-primary me-3">Know More About Institution</a>
                 </div>
             </div>
-
-            <div class="col-lg-6 mt-5 mt-lg-0">
+            <div class="col-lg-6 lg-0" style="order: 2;">
                 <!-- Carousel -->
                 <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
-
-                        <div class="carousel-item active" data-aos="flip-left">
+                        <div class="carousel-item active">
                             <div class="hero-img">
-                                <img src="https://d6pldk4490zsr.cloudfront.net/wp-content/uploads/2019/06/5.jpg" 
+                                <img src="Images/img1.webp"
+                                     alt="Education Technology" class="d-block w-100">
+                            </div>
+                        </div>
+                        <div class="carousel-item " data-aos="flip-left">
+                            <div class="hero-img">
+                                <img src="Images/c1.png" 
                                      alt="School Children Learning" class="d-block w-100">
                             </div>
                         </div>
-
                         <div class="carousel-item" data-aos="flip-right">
                             <div class="hero-img">
-                                <img src="https://magazine.1000libraries.com/wp-content/uploads/2025/10/pexels-mikhail-nilov-9158507-scaled.jpg" 
+                                <img src="Images/img4.webp" 
                                      alt="Teacher Guiding Students" class="d-block w-100">
                             </div>
                         </div>
 
                         <div class="carousel-item">
                             <div class="hero-img">
-                                <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=1470&q=80" 
-                                     alt="Group Study" class="d-block w-100">
+                                <img src="Images/awards.png"  alt="Group Study" class="d-block w-100">
                             </div>
                         </div>
-
-                        <div class="carousel-item">
-                            <div class="hero-img">
-                                <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1470&q=80" 
-                                     alt="Education Technology" class="d-block w-100">
-                            </div>
-                        </div>
-
                     </div>
-
                     <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-iconInspiring Young Minds Every Day" aria-hidden="true"></span>
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
 
@@ -162,77 +178,97 @@
         </div>
     </div>
 </section>
-    <!-- About Section -->
-    <section class="section" id="about" data-aos="slide-up">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Our School</h2>
-                <p>Discover our rich history, mission, and values that shape the educational experience at Your school name</p>
+<section class="section" id="about">
+    <div class="container">
+        <div class="section-title">
+            <h2>About Our School</h2>
+            <p>Towards Educational, Social & Environmental Reconstruction for a Quality Life</p>
+            <p><strong>Year of Establishment:</strong> 2010</p>
+        </div>
+
+        <!-- FIRST BLOCK -->
+        <div class="row align-items-stretch mb-5">
+            <div class="col-lg-6">
+                <div class="about-content h-100">
+                    <h3>Introduction</h3>
+                    <p>
+                        <strong>St. Mira’s Inclusive Convent</strong> is a social inclusion initiative founded
+                        as part of a non-profit educational foundation established in the year 2004 under the
+                        aegis of <strong>Mr. S. Chandrashekar</strong> and <strong>Dr. B. K. Kalavathi</strong>.
+                        The school was started in 2010 in the remote village of Sujjlur, Malavalli Taluq,
+                        Mandya District, Karnataka, to cater to the educational needs of rural children.
+                    </p>
+                    <p>
+                        The institution is deeply rooted in the belief that education is a powerful tool for
+                        social transformation. It strives to provide quality education that is inclusive,
+                        accessible, and sensitive to the diverse learning needs of children.
+                    </p>
+                    <p>
+                        St. Mira’s Inclusive Convent nurtures students in a caring and supportive environment
+                        where academic learning is balanced with emotional, social, and moral development.
+                        Equal importance is given to discipline, values, confidence-building, and life skills.
+                    </p>
+                    <p>
+                        The school promotes inclusive education by encouraging mutual respect, cooperation,
+                        and understanding among students from varied backgrounds, ensuring that every child
+                        feels valued and empowered.
+                    </p>
+                    <p>
+                        The institution actively collaborates with parents and the local community, recognizing that education is most effective when families and educators work together. Regular interactions, counselling support, and awareness programs help create a strong support system for the overall well-being of students.
+                    </p>
+                   
+                    <p>
+                        With committed educators and child-centric teaching practices, the school aims to
+                        prepare students to become responsible, confident, and socially aware individuals
+                        capable of contributing positively to society.
+                    </p>
+                    <p>
+                        By integrating modern teaching methodologies with strong foundational values, St. Mira’s Inclusive Convent continues to evolve as a nurturing space where education goes beyond academics—shaping resilient, compassionate, and future-ready individuals prepared to face life with confidence and purpose.
+                    </p>
+                </div>
             </div>
-            
-            <!-- First row: Text on left, Image on right -->
-            <div class="row align-items-stretch mb-5">
-                <div class="col-lg-6 mb-4 mb-lg-0">
-                    <div class="about-content h-100">
-                        <h3 class="section-title mb-3">Our History & Legacy</h3>
-                        <p class="mb-3">Founded in 1995 by visionary educator Dr. Charles Zeravshan, Your school name began as a small liberal arts school with a mission to provide exceptional education to students from all backgrounds.</p>
-                        <p class="mb-3">Over the decades, the institution has evolved from a modest setup into a well-respected and comprehensive educational community. With each passing year, the school introduced new academic programs, expanded its faculty, and embraced modern teaching practices while staying rooted in strong traditional values. This balance of heritage and innovation has shaped generations of confident, well-rounded learners.</p>
-                        <p>Today, Your school name stands on a 50-acre campus filled with modern laboratories, digital classrooms, sports arenas, cultural halls, and open learning spaces. The school continues to embody its original values of academic excellence, character development, community service, and lifelong learning. Our legacy is built on decades of trust, dedicated educators, and students who continue to excel in universities and careers worldwide.</p>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="about-img">
-                        <img src="https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="School Historic Building">
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Second row: Image on left, Text on right -->
-            <div class="row align-items-stretch">
-                <div class="col-lg-6 order-lg-1 order-2">
-                    <div class="about-img">
-                        <img src="https://images.hindustantimes.com/img/2022/09/06/550x309/9d8ad8cc-2e10-11ed-ad5c-e9830bf634f1_1662488613970.jpg" alt="Students Learning">
-                    </div>
-                </div>
-                <div class="col-lg-6 order-lg-2 order-1 mb-4 mb-lg-0">
-                    <div class="about-content h-100">
-                        <h3 class="section-title mb-3">Our Mission & Vision</h3>
-                        <p class="mb-3">At Your school name, we believe education is not limited to textbooks — it is the foundation of a meaningful, fulfilling life. Our mission is to nurture the whole child by focusing on academic strength, emotional intelligence, physical well-being, and creative expression. We strive to create an environment where curiosity is encouraged, learning is joyful, and every student feels valued</p>
-                        <p class="mb-3">Our vision is to build a community of responsible, forward-thinking individuals who contribute positively to society. We aim to equip students with essential 21st-century skills: critical thinking, communication, leadership, collaboration, and global awareness. Whether inside the classroom or beyond, our students are encouraged to explore new ideas, embrace challenges, and grow with confidence.</p>
-                        <p>Our dedicated faculty and staff work tirelessly to create an inclusive, supportive environment where every student can discover their passions and reach their full potential.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Stats -->
-            <div class="row mt-5 pt-5">
-                <div class="col-md-3 col-sm-6 mb-4">
-                    <div class="stats-item">
-                        <div class="stats-number">2,500+</div>
-                        <div class="stats-label">Students Enrolled</div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 mb-4">
-                    <div class="stats-item">
-                        <div class="stats-number">150+</div>
-                        <div class="stats-label">Qualified Faculty</div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 mb-4">
-                    <div class="stats-item">
-                        <div class="stats-number">28</div>
-                        <div class="stats-label">Years of Excellence</div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 mb-4">
-                    <div class="stats-item">
-                        <div class="stats-number">100%</div>
-                        <div class="stats-label">Results</div>
-                    </div>
-                </div>
+
+            <div class="col-lg-6">
+                <img src="Images/image.png" class="img-fluid rounded" alt="School Campus">
             </div>
         </div>
-    </section>
+
+        <!-- SECOND BLOCK -->
+        <div class="row align-items-stretch mb-5">
+            <div class="col-lg-6 order-lg-2">
+                <div class="about-content h-100">
+                    <h3>Our Mission & Vision</h3>
+                    <p>
+                        <strong>Mission:</strong><br>
+                        Our mission is to work towards educational, social, and environmental reconstruction
+                        for a quality life. We aim to deliver inclusive and value-based education that supports
+                        the holistic development of every child—academically, emotionally, socially, and ethically.
+                    </p>
+                    <p>
+                        The school is committed to nurturing compassion, integrity, and social responsibility,
+                        ensuring students grow into empathetic individuals who respect diversity and contribute
+                        positively to their communities.
+                    </p>
+                    <p>
+                        <strong>Vision:</strong><br>
+                        Our vision is to build an inclusive learning community that empowers rural children with
+                        knowledge, skills, and values needed to face future challenges. We aspire to create
+                        confident, independent learners with strong leadership qualities and a lifelong love
+                        for learning.
+                    </p>
+                    <p>
+                        We envision St. Mira’s Inclusive Convent as a center of excellence where education
+                        becomes a pathway to social inclusion, equality, and sustainable development.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-6 order-lg-1">
+                <img src="Images/hero2.png" class="img-fluid rounded" alt="Students Learning">
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Articles Section -->
     <section class="section bg-light" id="articles" data-aos="slide-up">
@@ -244,14 +280,11 @@
             <div class="row">
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="article-card" data-article="1">
-                        <img src="https://images.unsplash.com/photo-1585241936939-be4099591252?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXJ0aWNsZXxlbnwwfHwwfHx8MA%3D%3D" alt="Future of Education" class="article-img">
+                        <img src="https://images.unsplash.com/photo-1585241936939-be4099591252?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXJ0aWNsZXxlbnwwfHwwfHx8MA%3D%3D" alt="Future of Education" class="article-img"  href="article-details.html?id=1">
                         <div class="article-content">
                             <div class="article-meta">
                                 <span><i class="far fa-calendar me-1"></i> Oct 12, 2023</span>
-                                <div class="article-author">
-                                    <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Author" class="author-avatar">
-                                    <span>Dr. Sarah Chen</span>
-                                </div>
+                                
                             </div>
                             <h4 class="mb-3">The Future of Education: Technology in the Classroom</h4>
                             <p class="mb-3">Exploring how emerging technologies are transforming teaching methods and student learning experiences in the 21st century classroom.</p>
@@ -266,10 +299,7 @@
                         <div class="article-content">
                             <div class="article-meta">
                                 <span><i class="far fa-calendar me-1"></i> Oct 5, 2023</span>
-                                <div class="article-author">
-                                    <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Author" class="author-avatar">
-                                    <span>Dr. Michael Rodriguez</span>
-                                </div>
+                               
                             </div>
                             <h4 class="mb-3">Prioritizing Student Mental Health in Academic Settings</h4>
                             <p class="mb-3">A comprehensive look at strategies schools can implement to support student wellbeing and create a balanced learning environment.</p>
@@ -284,10 +314,6 @@
                         <div class="article-content">
                             <div class="article-meta">
                                 <span><i class="far fa-calendar me-1"></i> Sep 28, 2023</span>
-                                <div class="article-author">
-                                    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Author" class="author-avatar">
-                                    <span>Prof. Elena Petrova</span>
-                                </div>
                             </div>
                             <h4 class="mb-3">Creating Inclusive Learning Environments for All Students</h4>
                             <p class="mb-3">How schools can adapt teaching methodologies and physical spaces to accommodate diverse learning needs and abilities.</p>
@@ -304,113 +330,155 @@
         </div>
     </section>
     
-    <!-- Achievements Section -->
-    <section class="section" id="achievements" data-aos="slide-up">
-        <div class="container">
-            <div class="section-title">
-                <h2>Academic Achievements</h2>
-                <p>Celebrating the remarkable accomplishments of our students and faculty</p>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card" data-achievement="1">
-                        <img src="https://plus.unsplash.com/premium_photo-1713102864696-e44ae2503d6e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8TmF0aW9uYWwlMjBTY2llbmNlJTIwT2x5bXBpYWQlMjBDaGFtcGlvbnN8ZW58MHx8MHx8fDA%3D" class="card-img-top" alt="Science Competition">
-                        <div class="card-body">
-                            <span class="card-category">Science & Technology</span>
-                            <h5 class="card-title">National Science Olympiad Champions</h5>
-                            <p class="card-text">Our robotics team secured first place at the National Science Olympiad, showcasing innovative problem-solving skills and technical expertise.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card" data-achievement="2">
-                        <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fERlYmF0ZXxlbnwwfHwwfHx8MA%3D%3Ds" class="card-img-top" alt="Debate Competition">
-                        <div class="card-body">
-                            <span class="card-category">Literary Excellence</span>
-                            <h5 class="card-title">State Debate Championship</h5>
-                            <p class="card-text">Our debate team won the State Interschool Championship for the third consecutive year, demonstrating exceptional critical thinking and communication skills.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card" data-achievement="3">
-                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="Math Competition">
-                        <div class="card-body">
-                            <span class="card-category">Mathematics</span>
-                            <h5 class="card-title">International Math Olympiad Medalists</h5>
-                            <p class="card-text">Three of our students earned gold medals at the International Mathematics Olympiad, placing our school among the top 5 in the country.</p>
-                        </div>
-                    </div>
-                </div>
-                 <div class="text-center mt-4">
-                <a href="articles.html#achievements" class="btn btn-primary">View All Achievement <i class="fas fa-arrow-right ms-2"></i></a>
-            </div>
-            </div>
+<!-- Achievements Section -->
+<section class="section" id="achievements" data-aos="slide-up">
+    <div class="container">
+        <div class="section-title">
+            <h2>School News & Achievements</h2>
+            <p>Celebrating the remarkable accomplishments of our students and faculty</p>
         </div>
-    </section>
+        <div class="row">
 
-    <!-- Events Section - Redesigned -->
-    <section class="section events-section" id="events" data-aos="slide-up">
-        <div class="container">
-            <div class="section-title">
-                <h2>Upcoming Events</h2>
-                <p>Join us for enriching experiences that extend learning beyond the classroom</p>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="event-card">
-                        <div class="event-date">
-                            <div class="event-day">15</div>
-                            <div class="event-month">OCT</div>
-                        </div>
-                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Science Fair" class="event-img">
-                        <div class="event-content">
-                            <div class="event-time"><i class="far fa-clock me-2"></i> 9:00 AM - 4:00 PM</div>
-                            <div class="event-location"><i class="fas fa-map-marker-alt me-2"></i> Main Auditorium</div>
-                            <h4 class="mb-2">Annual Science Fair</h4>
-                            <p class="mb-3">Students from grades 6-12 will showcase innovative projects addressing real-world challenges. Open to parents and community members.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="event-card">
-                        <div class="event-date">
-                            <div class="event-day">22</div>
-                            <div class="event-month">OCT</div>
-                        </div>
-                        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Career Workshop" class="event-img">
-                        <div class="event-content">
-                            <div class="event-time"><i class="far fa-clock me-2"></i> 10:00 AM - 2:00 PM</div>
-                            <div class="event-location"><i class="fas fa-map-marker-alt me-2"></i> Career Center</div>
-                            <h4 class="mb-2">Career Guidance Workshop</h4>
-                            <p class="mb-3">Interactive workshop with industry professionals to help high school students explore career paths and make informed decisions.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="event-card">
-                        <div class="event-date">
-                            <div class="event-day">05</div>
-                            <div class="event-month">NOV</div>
-                        </div>
-                        <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Parent Teacher Conference" class="event-img">
-                        <div class="event-content">
-                            <div class="event-time"><i class="far fa-clock me-2"></i> 8:00 AM - 6:00 PM</div>
-                            <div class="event-location"><i class="fas fa-map-marker-alt me-2"></i> Classrooms</div>
-                            <h4 class="mb-2">Parent-Teacher Conference</h4>
-                            <p class="mb-3">Semester progress discussions between teachers and parents. Appointment booking opens next week on the school portal.</p>
-                        </div>
+            <!-- Achievement 1 : Fancy Dress -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card" data-achievement="1">
+                    <img src="Images/fan.png" class="card-img-top" alt="Fancy Dress Competition">
+                    <div class="card-body">
+                        <span class="card-category">Creative Expression</span>
+                        <h5 class="card-title">Fancy Dress Competition</h5>
+                        <p class="card-text">
+                            Our students enthusiastically participated in the <strong>Fancy Dress Competition</strong>,
+                            showcasing their creativity, confidence, and imagination. Dressed as inspiring
+                            personalities and characters, children expressed ideas with joy, helping them
+                            build communication skills and self-confidence.
+                        </p>
                     </div>
                 </div>
             </div>
+
+            <!-- Achievement 2 : Dance -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card" data-achievement="2">
+                    <img src="Images/dance.png" class="card-img-top" alt="Dance Performance">
+                    <div class="card-body">
+                        <span class="card-category">Performing Arts</span>
+                        <h5 class="card-title">Dance Performances</h5>
+                        <p class="card-text">
+                            Students presented vibrant <strong>dance performances</strong> reflecting cultural
+                            diversity and rhythm. These performances encouraged teamwork, coordination,
+                            and stage confidence while nurturing an appreciation for music, movement,
+                            and artistic expression.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievement 3 : Karate Champions -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card" data-achievement="3">
+                    <img src="Images/kara.png" class="card-img-top" alt="Karate Champions">
+                    <div class="card-body">
+                        <span class="card-category">Sports Achievement</span>
+                        <h5 class="card-title">Karate Champions</h5>
+                        <p class="card-text">
+                            Our young <strong>Karate Champions</strong> made us proud by demonstrating strength,
+                            discipline, and determination. Their achievements highlight regular training,
+                            self-control, and perseverance, promoting physical fitness and confidence
+                            among students.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
             <div class="text-center mt-4">
-                <a href="articles.html#events" class="btn btn-primary">View All events <i class="fas fa-arrow-right ms-2"></i></a>
+                <a href="articles.html#achievements" class="btn btn-primary">
+                    View All <i class="fas fa-arrow-right ms-2"></i>
+                </a>
             </div>
+
         </div>
-    </section>
+    </div>
+</section>
+
+<!-- Events Section - Redesigned -->
+<section class="section" id="events" data-aos="slide-up">
+    <div class="container">
+        <div class="section-title">
+            <h2>Events</h2>
+            <p>Join us for enriching experiences that extend learning beyond the classroom</p>
+        </div>
+        <div class="row">
+
+            <!-- Event 1: Awards Distribution -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="event-card">
+                    <img src="Images/awards.png" alt="Awards Distribution Ceremony" class="event-img">
+                    <div class="event-content">
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt me-2"></i> School Campus
+                        </div>
+                        <h4 class="mb-2">Awards Distribution Ceremony</h4>
+                        <p class="mb-3">
+                            The <strong>Awards Distribution Ceremony</strong> celebrated the achievements,
+                            dedication, and hard work of our students. Academic excellence, discipline,
+                            and participation in co-curricular activities were recognized, motivating
+                            students to strive for continuous improvement and success.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event 2: Independence Day Celebration -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="event-card">
+                    <img src="Images/inde.png" alt="Independence Day Celebration" class="event-img">
+                    <div class="event-content">
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt me-2"></i> School Campus
+                        </div>
+                        <h4 class="mb-2">Independence Day Celebration</h4>
+                        <p class="mb-3">
+                            Our school celebrated <strong>Independence Day</strong> with pride and patriotism.
+                            The event featured flag hoisting, patriotic songs, speeches, and cultural
+                            performances, inspiring students to honor the nation and understand the values
+                            of freedom, unity, and responsibility.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event 3: Makara Sankranti Celebration -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="event-card">
+                    <img src="Images/mak.png" alt="Makara Sankranti Celebration" class="event-img">
+                    <div class="event-content">
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt me-2"></i> School Campus
+                        </div>
+                        <h4 class="mb-2">Makara Sankranti Celebration</h4>
+                        <p class="mb-3">
+                            The <strong>Makara Sankranti Celebration</strong> introduced students to the
+                            cultural and traditional significance of the harvest festival. Activities,
+                            festive attire, and discussions helped children appreciate Indian traditions,
+                            seasonal changes, and the spirit of gratitude and togetherness.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="articles.html#events" class="btn btn-primary">
+                View All Events <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
 
     <!-- Notifications Section - Redesigned -->
-    <section class="section bg-light" id="notifications" data-aos="slide-up">
+    <!-- <section class="section bg-light" id="notifications" data-aos="slide-up">
         <div class="container">
             <div class="section-title">
                 <h2>Important Notifications</h2>
@@ -535,8 +603,33 @@
                 <a href="articles.html#notifications" class="btn btn-primary">View All notifications <i class="fas fa-arrow-right ms-2"></i></a>
             </div>
         </div>
-    </section>
+    </section> -->
 
+    <!-- Gallery Section -->
+    <section class="section bg-light" id="gallery" data-aos="slide-up">
+        <div class="container">
+            <div class="section-title">
+                <h2>Gallery</h2>
+                <p>Capturing moments of learning, joy, and achievement</p>
+            </div>
+            <div class="row gallery-grid" id="galleryContainer">
+                <!-- Gallery items will be inserted here by JavaScript -->
+            </div>
+            
+            <!-- Pagination Indicator -->
+            <div class="text-center mt-4 mb-4">
+                <div class="gallery-pagination" id="galleryPagination">
+                    <!-- Pagination dots will be inserted here by JavaScript -->
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <button class="btn btn-primary" id="morePhotosBtn" onclick="loadMorePhotos()">
+                    More Photos <i class="fas fa-arrow-right ms-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
     <!-- Contact Section -->
     <section class="section" id="contact" data-aos="slide-up">
         <div class="container">
@@ -553,7 +646,7 @@
                             </div>
                             <div class="contact-details">
                                 <h5>Our Location</h5>
-                                <p>123 Education Avenue, Knowledge Park, Cityville, State 12345</p>
+                                <p> sujloor purigali main road, Vadakepura, 571424</p>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -562,51 +655,64 @@
                             </div>
                             <div class="contact-details">
                                 <h5>Phone</h5>
-                                <p>Admissions: (123) 456-7890</p>
-                                <p>General: (123) 456-7891</p>
+                                <a href="tel: +91 9900118453"> +91 9900118453</a>
                             </div>
                         </div>
                         <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h5>Email</h5>
-                                <p>Admissions: admissions@Your School name.edu</p>
-                                <p>General: info@Your School name.edu</p>
-                            </div>
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
                         </div>
+                        <div class="contact-details">
+                            <h5>Email</h5>
+                            <a href="mailto:kalash03@gmail.com">kalash03@gmail.com</a>
+
+                            <!-- Organization -->
+                            <p class="mt-1 mb-0">
+                                Organization:
+                                <a href="http://www.anveshanafoundation.org/" target="_blank">
+                                    Anveshana Foundation
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+
                         <div class="contact-item">
                             <div class="contact-icon">
                                 <i class="fas fa-clock"></i>
                             </div>
                             <div class="contact-details">
                                 <h5>Working Hours</h5>
-                                <p>Monday - Friday: 8:00 AM - 4:00 PM</p>
-                                <p>Saturday: 9:00 AM - 1:00 PM (Administrative)</p>
+                                <p>Monday - Friday: 8:00 AM - 5:30 PM</p>
+                                <p>Saturday: 8:00 AM - 2:00 PM </p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-body p-4">
-                            <h4 class="mb-4">Our Location</h4>
-                            <div class="google-map mb-3">
-                                <iframe 
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.0134706283056!2d77.26196987482628!3d12.111230188130609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baedf08424a6143%3A0xea2e7dce30cc6a15!2sRepublic%20International%20Residential%20School%20and%20College%2C%20Hanur!5e0!3m2!1sen!2sin!4v1765777744612!5m2!1sen!2sin" 
-                                    width="100%" 
-                                    height="300" 
-                                    style="border:0;" 
-                                    allowfullscreen="" 
-                                    loading="lazy" 
-                                    referrerpolicy="no-referrer-when-downgrade">
-                                </iframe>
-                            </div>
-                            <a href="https://maps.app.goo.gl/FdJd1wG1wPc9b7CD9" target="_blank" style="max-width: fit-content;" class="btn btn-primary w-100">Get Direction</a>
+            <div class="col-lg-6">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <h4 class="mb-4">Our Location</h4>
+                        <!-- Google Map -->
+                        <div class="google-map mb-3 rounded overflow-hidden">
+                            <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d124680.96187798225!2d76.89756523906252!3d12.431051434874568!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baf0f8de90e4109%3A0x2a03266f9da1a713!2sSt%20Mira&#39;.s%20Inclusive%20Convent!5e0!3m2!1sen!2sin!4v1771482302176!5m2!1sen!2sin"
+                            width="100%"
+                            height="300"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
                         </div>
+                        <!-- Direction Button -->
+                        <a href="https://maps.app.goo.gl/hhLAoNe7RHimGKax5"
+                        target="_blank"
+                        class="btn btn-primary w-100" style="max-width: fit-content;">
+                            Get Directions
+                        </a>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     </section>
@@ -614,13 +720,13 @@
     <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 mb-4 mb-md-0">
-                    <h5>Your school name </h5>
-                    <p class="mt-3">Excellence in education for over 28 years, nurturing students to become responsible global citizens through innovative learning approaches.</p>
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h5>St Mira's Inclusive Convent</h5>
+                    <p>Towards Educational, Social & Environmental reconstruction for a quality life</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.facebook.com/share/1Cu7VLzqHR/"target="_blank"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
@@ -631,28 +737,30 @@
                         <li><a href="index.html#about">About Us</a></li>
                         <li><a href="articles.html">Articles</a></li>
                         <li><a href="index.html#events">Events</a></li>
-                        <li><a href="index.html#notifications">Notifications</a></li>
                     </ul>
                 </div>
                <div class="col-md-3">
                     <h5>School Information</h5>
                     <p class="mt-3">
                         Office Hours: <br>
-                        Monday – Friday: 9:00 AM – 4:00 PM <br>
-                        Saturday: 9:00 AM – 1:00 PM
+                        Monday – Friday: 8:00 AM – 5:30 PM <br>
+                        Saturday: 8:00 AM – 2:00 PM
                     </p>
-                    <p class="mb-1"><strong>Phone:</strong> +91 9XXXXXXXXX</p>
-                    <p class="mb-0"><strong>Email:</strong> info@yourschoolname.com</p>
+                    <p class="mb-1"><strong>Phone:</strong> +91 9900118453 </p>
+                    <p class="mb-0"><strong>Email:</strong> <span style="word-break: break-all;">kalash03@gmail.com</span></p>
+                    <p class="mb-0"><strong>Organiztion:</strong> <span style="word-break: break-all;"href="http://www.anveshanafoundation.org/">Anveshana Foundation</span></p>
                 </div>
-                  <div class="col-md-3">
-            <h5>Thought of the Day</h5>
-            <p class="mt-3 fst-italic">
-                "Education is the most powerful weapon which you can use to change the world."
-            </p>
-            <small class="text-white-50">– Nelson Mandela</small>
+                  <div class="col-md-4 ">
+            <div class="footer-motivation">
+                 <h5 class="footer-title">Towards Educational, Social & Environmental reconstruction for a quality life</h5>
+                <p id="motivationText" class="motivation-text"></p>
+            </div>
         </div>
-            <div class="copyright">
-                &copy; 2025 Your school name. All rights reserved
+            <div class="copyright d-flex">
+                <h5 >&copy; 2026 St Mira's Inclusive Convent. All rights reserved.</h5>
+                </div>
+                <div>
+                <p class="mb-0">Powered by <a href="https://zeravshantechnologies.com/" target="_blank" style="color: white;">Zeravshan Technologies</a> in collaboration with <a href="https://newtonianlearningsolutions.com/" target="_blank" style="color: white; ">Newtonian Learning Solutions</a>.</p>
             </div>
         </div>
     </footer>
@@ -662,8 +770,38 @@
         <i class="fas fa-arrow-up"></i>
     </a>
 
+    <!-- Image Lightbox Modal -->
+    <div id="imageLightbox" class="lightbox-modal">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-content">
+            <button id="lightboxPrevBtn" class="lightbox-arrow lightbox-prev" title="Previous Image">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <img id="lightboxImage" src="" alt="Gallery Image" class="lightbox-image">
+            <button id="lightboxNextBtn" class="lightbox-arrow lightbox-next" title="Next Image">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+         
+        </div>
+    </div>
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="main.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('Service Worker registered successfully:', registration);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>
