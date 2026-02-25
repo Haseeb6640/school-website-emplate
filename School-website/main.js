@@ -665,6 +665,15 @@ setInterval(changeText, 8000);
 // All gallery images organized in sets of 6
 const allGalleryPhotos = [
     { src: 'Images/img42.jpg', alt: 'img42' },
+    { src: 'Images/new11.png', alt: 'mak' },
+    { src: 'Images/new12.png', alt: 'mak' },
+    { src: 'Images/new13.png', alt: 'mak' },
+    { src: 'Images/new14.png', alt: 'mak' },
+    { src: 'Images/new15.png', alt: 'mak' },
+    { src: 'Images/new16.png', alt: 'mak' },
+    { src: 'Images/new24.jpeg', alt: 'mak' },
+    { src: 'Images/new25.jpeg', alt: 'mak' },
+    { src: 'Images/new26.jpeg', alt: 'mak' },
     { src: 'Images/img43.jpg', alt: 'img43' },
     { src: 'Images/img44.jpg', alt: 'img44' },
     { src: 'Images/img45.jpg', alt: 'img45' },
@@ -735,7 +744,14 @@ const allGalleryPhotos = [
     { src: 'Images/inde.png', alt: 'inde' },
     { src: 'Images/ing14.jpeg', alt: 'ing14' },
     { src: 'Images/kara.png', alt: 'kara' },
-    { src: 'Images/mak.png', alt: 'mak' }
+    { src: 'Images/new17.jpeg', alt: 'mak' },
+    { src: 'Images/new18.jpeg', alt: 'mak' },
+    { src: 'Images/new19.jpeg', alt: 'mak' },
+    { src: 'Images/new20.jpeg', alt: 'mak' },
+    { src: 'Images/new21.jpeg', alt: 'mak' },
+    { src: 'Images/new22.jpeg', alt: 'mak' },
+    { src: 'Images/new23.jpeg', alt: 'mak' }
+
 ];
 
 const PHOTOS_PER_PAGE = 6;
@@ -1052,4 +1068,133 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initializeLightboxControls);
 } else {
     initializeLightboxControls();
+}
+// ===== VIDEO MODAL FUNCTIONALITY =====
+let videosData = [];
+let currentVideoIndex = 0;
+
+function initializeVideoControls() {
+    const videoContainers = document.querySelectorAll('.video-container');
+    const videoModal = document.getElementById('videoModal');
+    const videoModalClose = document.querySelector('.video-modal-close');
+    const fullscreenVideo = document.getElementById('fullscreenVideo');
+    
+    if (videoContainers.length === 0 || !videoModal || !fullscreenVideo) return;
+    
+    // Store all video sources
+    videosData = [];
+    videoContainers.forEach((container, index) => {
+        const video = container.querySelector('.embedded-video');
+        const source = video.querySelector('source');
+        if (source && source.src) {
+            videosData.push({
+                src: source.src,
+                video: video,
+                container: container
+            });
+        }
+    });
+    
+    // Start autoplay for the first video
+    if (videosData.length > 0) {
+        autoplayVideos();
+    }
+    
+    // Add click handlers to each video container
+    videoContainers.forEach((container, index) => {
+        const playBtn = container.querySelector('.video-play-btn');
+        const video = container.querySelector('.embedded-video');
+        
+        if (playBtn) {
+            playBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                openVideoModal(index);
+            });
+        }
+        
+        if (video) {
+            video.addEventListener('click', function() {
+                openVideoModal(index);
+            });
+        }
+    });
+    
+    // Close modal when clicking the close button
+    videoModalClose.addEventListener('click', closeVideoModal);
+    
+    // Close modal when clicking outside the video content
+    videoModal.addEventListener('click', function(e) {
+        if (e.target === videoModal) {
+            closeVideoModal();
+        }
+    });
+    
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+            closeVideoModal();
+        }
+    });
+}
+
+function autoplayVideos() {
+    if (videosData.length === 0) return;
+    
+    let videoIndex = 0;
+    
+    function playNextVideo() {
+        if (videoIndex < videosData.length) {
+            const videoData = videosData[videoIndex];
+            const video = videoData.video;
+            
+            // Reset video
+            video.currentTime = 0;
+            video.play();
+            
+            // When video ends, play next one
+            const onEnded = () => {
+                video.removeEventListener('ended', onEnded);
+                videoIndex++;
+                playNextVideo();
+            };
+            
+            video.addEventListener('ended', onEnded);
+        }
+    }
+    
+    playNextVideo();
+}
+
+function openVideoModal(index) {
+    if (index < 0 || index >= videosData.length) return;
+    
+    const videoModal = document.getElementById('videoModal');
+    const fullscreenVideo = document.getElementById('fullscreenVideo');
+    const videoData = videosData[index];
+    
+    currentVideoIndex = index;
+    
+    // Set fullscreen video source
+    fullscreenVideo.src = videoData.src;
+    videoModal.classList.add('active');
+    fullscreenVideo.play();
+}
+
+function closeVideoModal() {
+    const videoModal = document.getElementById('videoModal');
+    const fullscreenVideo = document.getElementById('fullscreenVideo');
+    videoModal.classList.remove('active');
+    fullscreenVideo.pause();
+    
+    // Restart autoplay from beginning when modal closes
+    setTimeout(() => {
+        autoplayVideos();
+    }, 500);
+}
+
+// Initialize video controls when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeVideoControls);
+} else {
+    initializeVideoControls();
 }
